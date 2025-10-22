@@ -1,11 +1,14 @@
 import { Navbar } from "../components/Navbar/Navbar"
+import { Footer } from "../components/Footer/Footer"
 
 export function Marketplace(){
     return(
         <main>
             <Navbar isLogged="" />
-            {/* <Collection name="" />
-            <Footer/> */}
+            <div className="page-content">
+                {/* <Collection /> */}
+            </div>
+            <Footer/>
         </main>
     )
 }
