@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom'
 
 import { Marketplace } from './pages/Marketplace'
 import { LandingPage } from './pages/LandingPage/LandingPage'
+import { Login } from './pages/SignIn/SignIn'
+import { Register } from './pages/Register/Register'
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
       
       {/* Quando a URL for "/login", mostre o componente <LoginPage /> */}
       <Route path="/home" element={<LandingPage />} />
+      <Route path="/home/login" element={<Login />} />
+      <Route path="/home/register" element={<Register />} />
     </Routes>
   )
 }

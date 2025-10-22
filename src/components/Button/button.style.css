@@ -16,9 +16,7 @@
     border: 1px solid var(--main-500);
     border-radius: 8px;
     padding: 16px 64px;
-    width: 187px;
-    height: 55px;
-    background-color: transparent;
+    background-color: var(--main-50);
 
 
     cursor: pointer;
