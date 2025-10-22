@@ -1,0 +1,31 @@
+.btn-primary  {
+    border-radius: 8px;
+    padding: 16px 64px;
+    background-color: var(--main-500);
+    cursor: pointer;
+    border: none;
+
+    font-family: var(--third-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 140%;
+    color: #fff;
+}
+
+.btn-secondary  {
+    border: 1px solid var(--main-500);
+    border-radius: 8px;
+    padding: 16px 64px;
+    width: 187px;
+    height: 55px;
+    background-color: transparent;
+
+
+    cursor: pointer;
+
+    font-family: var(--third-family);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 140%;
+    color: var(--main-500);
+}

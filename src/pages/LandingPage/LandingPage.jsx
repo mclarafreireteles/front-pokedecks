@@ -11,7 +11,7 @@ export function LandingPage(){
                     <p className='text-content-text'>Discover a world of Pokemon cards, from rare gems to classic favorites. Start your collection or find that missing card in our premier Pokemon card shop.</p>
                     <div className="lp-btn-container">
                         <Button text="Sign In" type="primary" onClick=""/> 
-                        <Button text="Sign Out" type="secondary" onClick=""/> 
+                        <Button text="Register" type="secondary" onClick=""/> 
                     </div>
                 </div>
             </div>
