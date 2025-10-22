@@ -3,7 +3,7 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
 import { Marketplace } from './pages/Marketplace'
-import { LandingPage } from './pages/LandingPage'
+import { LandingPage } from './pages/LandingPage/LandingPage'
 
 
 function App() {
