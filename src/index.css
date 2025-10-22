@@ -1,68 +1,61 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	--main-900: #1e3a8a;
+	--main-800: #1e40af;
+	--main-700: #1d4ed8;
+	--main-600: #2563eb;
+	--main-500: #3b82f6;
+	--main-400: #60a5fa;
+	--main-300: #93c5fd;
+	--main-200: #bfdbfe;
+	--main-100: #dbeafe;
+	--main-50: #eff6ff;
+	--secondary-950: #1e1e20;
+	--secondary-900: #3c3c3e;
+	--secondary-800: #434347;
+	--secondary-600: #595a5f;
+	--secondary-700: #4c4d52;
+	--secondary-500: #696a72;
+	--secondary-400: #93949a;
+	--secondary-300: #c2c3c7;
+	--secondary-200: #e5e5e6;
+	--secondary-100: #f2f2f3;
+	--secondary-50: #f7f7f8;
+	--text-black: #141313;
+	--text-light-gray: #bdbdbd;
+	--text-gray: #4f4f4f;
+	--text-disabled: #c5c0db;
+	--types-normal: #f3da98;
+	--types-fire: #f05030;
+	--types-fighting: #c22e28;
+	--types-water: #6890f0;
+	--types-flying: #86c9ee;
+	--types-grass: #78c850;
+	--types-poison: #e46be2;
+	--types-eletric: #f8d030;
+	--types-ground: #e2bf65;
+	--types-psychic: #a33ea1;
+	--types-rock: #e87a7a;
+	--types-ice: #96d9d6;
+	--types-bug: #a6b91a;
+	--types-dragon: #e44978;
+	--types-ghost: #a98ff3;
+	--types-dark: #444;
+	--types-steel: #c9c8d3;
+	--types-magic: #f85888;
+	--types-cosmic: #396eed;
+	--types-light: #eadd5e;
+	--types-sound: #54bf95;
+	--types-notdefined: #1a9090;
+	--grey-dark-text: #4f4f4f;
+	--red-main-hover: #b83639;
+	--red-main-active: #f14347;
+	--blue-main-hover: #02458d;
+	--blue-main-active: #1068c8;
+	--yellow-main-hover: #f6de3f;
+	--yellow-main-active: #ffe331;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+    --font-family: "Roboto Flex", sans-serif;
+    --second-family: "Roboto", sans-serif;
+    --third-family: "Inter", sans-serif;
+    --font3: "Poppins", sans-serif;
 }

@@ -1,0 +1,28 @@
+.search-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid var(--text-black);
+    border-radius: 12px;
+    padding: 14px 28px;
+    align-items: center;
+}
+
+.search-input {
+    border: none;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 160%;
+    color: var(--secondary-800);
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-button {
+    border: none;
+    background: none;
+    margin: 0;
+    cursor: pointer;
+}
