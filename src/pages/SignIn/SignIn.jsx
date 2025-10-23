@@ -19,7 +19,7 @@ export function Login(){
                     <Button text="Sign In" type="primary" onClick={() => handleOtherPage('')} />
                 </div>
                 <div className="login-right-col">
-                    <h2>Welcome Back!</h2>
+                    <h2>Hello, Trainer!</h2>
                     <p>Enter your pokerecords and start the journey with us</p>
                     <Button text="Sign Up" type="secondary" onClick={() => handleOtherPage('/home/register')}/>
                 </div>

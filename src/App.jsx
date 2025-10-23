@@ -14,7 +14,6 @@ function App() {
     <Routes>
       <Route path="/" element={<Marketplace />} />
       
-      {/* Quando a URL for "/login", mostre o componente <LoginPage /> */}
       <Route path="/home" element={<LandingPage />} />
       <Route path="/home/login" element={<Login />} />
       <Route path="/home/register" element={<Register />} />

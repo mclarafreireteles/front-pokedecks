@@ -1,0 +1,25 @@
+.container_input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 28px;
+    border: 1px solid var(--text-black);
+    border-radius: 12px;
+    gap: 20px;
+    min-width: 434px;;
+    text-align: left;
+}
+
+.input_information {
+    border: none;
+    background-color: transparent;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    color: var(--secondary-800);
+    width: 100%;
+}
+.input_information:focus {
+    outline: none;
+}
