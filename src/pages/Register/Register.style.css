@@ -1,0 +1,99 @@
+*{
+padding: 0px;
+
+
+}
+
+.registerContainer {
+  display: grid;
+  justify-items: start;
+  grid-template-columns: 1fr 1.4fr;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: hidden;
+  background-image: url(/public/images/backgorund_img_register.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+    
+}
+
+.introdction_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-height: 100vh;
+}
+
+.CreateAccount_register {
+
+       display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+    max-height: 100vh;
+    
+
+
+}
+
+.Register_information_container{
+    display: flex;
+    flex-direction: column;
+    width: 60vh;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin: 0.8rem 0;
+    
+}
+
+
+.Register_information {
+    display: flex;
+    margin: 0.6rem 0.8rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 60vh;
+   border: none;
+
+}
+
+input{
+    padding-left: 30px;
+    width: 80%;
+    height: 50px;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+h1{
+    font-family: var(--font-family);
+    font-weight: 700px;
+    font-size: 40px;
+    
+}
+
+.Principal_text_introduction{
+    color: var(--secondary-50);
+}
+
+.Principal_text_create{
+    color: var(--main-500);
+}
+
+.Secondary_text_introduction{
+    font-family: var(--second-family);
+    font-weight: 100px ;
+    font-size: 20px;
+    color: var(--secondary-50);
+    max-width: 300px;
+    text-align: center;
+}
