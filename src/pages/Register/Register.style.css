@@ -50,7 +50,11 @@
 .Principal_text_create {
     font-family: var(--font-family);
     font-weight: 700px;
-    font-size: 40px;
+
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 56px;
+    text-align: center;
 }
 
 
