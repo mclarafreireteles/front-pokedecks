@@ -1,0 +1,16 @@
+.success-container {
+
+    background-image: url(/public/images/background_img_success.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.success-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 32px;
+}

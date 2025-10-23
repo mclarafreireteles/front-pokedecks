@@ -58,19 +58,18 @@
 }
 
 
-.Principal_text_introduction{
+.Principal_text_introduction {
     color: var(--secondary-50);
 }
 
-.Principal_text_create{
+.Principal_text_create {
     color: var(--main-500);
 }
 
-.Secondary_text_introduction{
+.Secondary_text_introduction {
     font-family: var(--second-family);
     font-weight: 100px ;
     font-size: 20px;
     color: var(--secondary-50);
-    max-width: 300px;
     text-align: center;
 }
