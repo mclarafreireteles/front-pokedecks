@@ -20,3 +20,24 @@ export const register = async (userData) => {
 
     return data;
 }
+
+export const login = async (username, password) => {
+    const encodedCredentials = btoa(`${username}:${password}`);
+
+    const response = await fetch(`${AUTH_API_URL}/login`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Basic ${encodedCredentials}`,
+            
+            'accept': '*/*'
+        }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message || 'Falha no login. Status: ' + response.status);
+    }
+    
+    return data;
+}

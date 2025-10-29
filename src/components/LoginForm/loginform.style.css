@@ -1,0 +1,12 @@
+.formlogin {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+}
+
+.formlogin-container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
