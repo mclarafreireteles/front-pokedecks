@@ -1,13 +1,13 @@
 import './button.style.css'
 
-export function Button({ text, type, onClick }){
+export function Button({ typeColor, children, ...props }){
 
-    const buttonClass = `btn ${type === 'primary' ? 'btn-primary' : 'btn-secondary'}`;
+    const buttonClass = `btn ${typeColor === 'primary' ? 'btn-primary' : 'btn-secondary'}`;
 
     return (
 
-        <button className={buttonClass} onClick={onClick}>
-            {text}
+        <button className={buttonClass} {...props}>
+            {children}
         </button>
 
     )
