@@ -8,7 +8,7 @@ export function Success(){
             <div className="success-content-container">
                 <h2 className='Principal_text_introduction'>Your account has been <br /> successfully created!</h2>
                 <p className='Secondary_text_introduction'>Time to explore and complete your Poké-collection</p>
-                <Button text="Catch ’Em Now" type="secondary" />
+                <Button typeColor="secondary">Catch ’Em Now</Button>
             </div>
         </main>
     )

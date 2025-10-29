@@ -10,8 +10,10 @@ import { FiUser } from "react-icons/fi";
 import { FiAtSign } from "react-icons/fi";
 import { FiMail } from "react-icons/fi";
 import { FiLock } from "react-icons/fi";
+import { useNavigate } from 'react-router-dom';
 
 export function RegisterForm() {
+    const navigate = useNavigate()
 
     const [formData, setFormData] = useState({
         name: '',
@@ -46,6 +48,7 @@ export function RegisterForm() {
             setSuccess(`Usuário ${registeredUser.username} registrado com sucesso!`);
 
             setFormData({ name: '', username: '', email: '', password: '' });
+            navigate('/home/register/success');
         } catch (err) {
             setIsLoading(false);
             setError(err.message);
