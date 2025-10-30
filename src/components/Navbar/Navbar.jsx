@@ -2,14 +2,18 @@ import './navbar.style.css'
 
 import { Link } from 'react-router-dom'
 
+import { useAuth } from '../../contexts/AuthContext';
+
 import { DropdownList } from '../DropdownList/DropdownList'
 import { SearchInput } from '../SearchInput/SearchInput';
-import { ProfilePic } from '../ProfilePic/ProfilePic';
+import { NavbarProfile } from '../NavbarProfile/NavbarProfile'
 
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 
 
-export function Navbar({ isLogged }) {
+export function Navbar() {
+
+    const { isAuthenticated } = useAuth();
 
     const setsList = [
         { id: 0, value: 'volvo', label: 'Volvo' },
@@ -19,7 +23,7 @@ export function Navbar({ isLogged }) {
     ];
 
     return (
-        <div className='navbar'>
+        <nav className='navbar'>
             <div className="left-container">
                 <h1>poke<span>decks</span></h1>
                 <div className="navigation">
@@ -32,8 +36,8 @@ export function Navbar({ isLogged }) {
                 <div className="usertab">
                     <FiHeart size={24} />
                     <FiShoppingCart size={24}/>
-                    {isLogged ? (
-                    <ProfilePic />
+                    {isAuthenticated ? (
+                        <NavbarProfile/>
                 ) : (
                     <Link to="/home" className="join-us-link">
                         <h3>Join us!</h3>
@@ -41,6 +45,6 @@ export function Navbar({ isLogged }) {
                 )}
                 </div>
             </div>
-        </div>
+        </nav>
     )
 }

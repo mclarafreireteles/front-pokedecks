@@ -1,11 +1,13 @@
 import './loginform.style.css'
 
 import { useState } from 'react';
-import { login } from '../../services/authService';
-import { Button } from '../Button/Button';
 import { useNavigate } from 'react-router-dom';
 
+import { useAuth } from '../../contexts/AuthContext';
+
 import { Input } from '../Input/Input';
+import { Button } from '../Button/Button';
+
 
 import { FiMail } from "react-icons/fi";
 import { FiLock } from "react-icons/fi";
@@ -21,6 +23,8 @@ export function LoginForm() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+
+    const { login } = useAuth();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
