@@ -19,8 +19,8 @@ export function LandingPage(){
                     <h2 className='text-content-title'>Catch 'Em All: Explore Our Pokemon Card Catalog!</h2>
                     <p className='text-content-text'>Discover a world of Pokemon cards, from rare gems to classic favorites. Start your collection or find that missing card in our premier Pokemon card shop.</p>
                     <div className="lp-btn-container">
-                        <Button text="Sign In" type="primary" onClick={() => handleOtherPage('/home/login')}/> 
-                        <Button text="Register" type="secondary" onClick={() => handleOtherPage('/home/register')}/> 
+                        <Button typeColor="primary" onClick={() => handleOtherPage('/home/login')}>Sign In</Button> 
+                        <Button typeColor="secondary" onClick={() => handleOtherPage('/home/register')}>Register</Button>
                     </div>
                 </div>
             </div>
