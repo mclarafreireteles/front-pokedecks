@@ -13,8 +13,8 @@ import Logout from '@mui/icons-material/Logout';
 
 export function NavbarProfile() {
     const { logout, user } = useAuth();
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
+    // const [anchorEl, setAnchorEl] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
 
     console.log("Dados do usuário no token:", user);
@@ -23,55 +23,38 @@ export function NavbarProfile() {
         return null;
     }
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
+    const toggleDropdown = () => {
+        setIsOpen(prev => !prev);
     };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-
-    const handleLogout = () => {
-        handleClose();
+    const handleLogoutClick = () => {
         logout();
-    };
+        setIsOpen(false); 
+    }
 
 
     return (
-        <div>
+        <div className='dropdown-container'>
             <IconButton
-                onClick={handleClick}
+                onClick={toggleDropdown}
                 size="small"
-                aria-controls={open ? 'profile-menu' : undefined}
                 aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-
             >
                 <Avatar sx={{ width: 40, height: 40, fontSize: '1rem', bgcolor: 'var(--main-500)' }}>
                     {user.sub[0].toUpperCase()}
                 </Avatar>
             </IconButton>
-            <Menu
-                id="profile-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'right',
-                }}
-                transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
-                }}
-            >
-                <MenuItem onClick={handleLogout}>
-                    <ListItemIcon>
-                        <Logout fontSize="small" />
-                    </ListItemIcon>
-                    <ListItemText>Logout</ListItemText>
-                </MenuItem>
-            </Menu>
+            {isOpen && (
+                <ul className="dropdown-menu">
+                    <li
+                        className="dropdown-item"
+                        onClick={handleLogoutClick}
+                    >
+                        <Logout fontSize="small" style={{ marginRight: '8px' }} />
+                        <span>Logout</span>
+                    </li>
+                </ul>
+            )}
         </div>
     )
 }

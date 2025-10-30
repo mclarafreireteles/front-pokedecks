@@ -41,3 +41,12 @@
 .logout-btn:hover {
     background-color: #d32f2f;
 }
+
+.dropdown-menu {
+    left: auto;
+    right: 0;   
+}
+
+.dropdown-item:hover {
+    color: var(--main-500);
+}

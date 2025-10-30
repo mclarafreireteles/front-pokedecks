@@ -36,12 +36,15 @@
 }
 
 .dropdown-item {
+  display: flex;
+  gap: 12px;
   padding: 10px 14px;
   font-size: 0.95rem;
   color: var(--text-gray);
   cursor: pointer;
+ 
 }
 
 .dropdown-item:hover {
-  background-color: #f0f0f0;
+  background-color: var(--main-100);
 }
