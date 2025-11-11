@@ -1,0 +1,26 @@
+.input-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    justify-content: end;
+    margin-top: 48px;
+}
+
+.label-input {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--secondary-950);
+}
+
+.input-container-label {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}

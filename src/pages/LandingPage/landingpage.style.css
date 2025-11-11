@@ -73,6 +73,6 @@
 
 .btn-primary:hover,
 .btn-secondary:hover {
-    transform: translateY(-3px); /* Move o botão 3px para cima */
+    /* transform: translateY(-3px); Move o botão 3px para cima */
     box-shadow: 0 6px 12px rgba(122, 122, 122, 0.305); /* Adiciona uma sombra suave */
 }

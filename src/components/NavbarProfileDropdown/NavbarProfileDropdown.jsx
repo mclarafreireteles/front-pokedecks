@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Avatar from '@mui/material/Avatar';
 import Logout from '@mui/icons-material/Logout';
 
-export function NavbarProfile() {
+export function NavbarProfileDropdown() {
     const { logout, user } = useAuth();
     // const [anchorEl, setAnchorEl] = useState(null);
     const [isOpen, setIsOpen] = useState(false);

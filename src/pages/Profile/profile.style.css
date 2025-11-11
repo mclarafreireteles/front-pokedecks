@@ -1,0 +1,11 @@
+.profile-page-name {
+    margin-left: 80px;
+    margin-top: 24px;
+}
+
+.profile-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}

@@ -6,7 +6,7 @@ import { useAuth } from '../../contexts/AuthContext';
 
 import { DropdownList } from '../DropdownList/DropdownList'
 import { SearchInput } from '../SearchInput/SearchInput';
-import { NavbarProfile } from '../NavbarProfile/NavbarProfile'
+import { NavbarProfileDropdown } from '../NavbarProfileDropdown/NavbarProfileDropdown'
 
 import { FiHeart, FiShoppingCart } from "react-icons/fi";
 
@@ -37,7 +37,7 @@ export function Navbar() {
                     <FiHeart size={24} />
                     <FiShoppingCart size={24}/>
                     {isAuthenticated ? (
-                        <NavbarProfile/>
+                        <NavbarProfileDropdown />
                 ) : (
                     <Link to="/home" className="join-us-link">
                         <h3>Join us!</h3>
