@@ -17,11 +17,12 @@ export function EditProfileContainer() {
     const { logout } = useAuth();
 
     const [formData, setFormData] = useState({
+        id:"",
         username: "",
-        fullName: "",
+        name: "", 
         email: "",
-        phoneNumber: "",
-        dateOfBirth: "",
+        phoneNumber: "", 
+        birthDate: "", 
         address: ""
     });
 
@@ -58,7 +59,7 @@ export function EditProfileContainer() {
         setError(null);
 
         try {
-            await userService.updateUserProfile(formData);
+            await userService.updateUserProfile(formData.id, formData);
             alert("Perfil atualizado com sucesso!");
         } catch (error) {
             console.error(error);
@@ -71,11 +72,11 @@ export function EditProfileContainer() {
 
     const handleDelete = async () => {
         if (window.confirm("Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.")) {
-            setIsLoading(true); 
+            setIsLoading(true);
             setError(null);
 
             try {
-                await userService.deleteUserProfile();
+                await userService.deleteUserProfile(formData.id);
                 alert("Perfil excluído com sucesso.");
                 logout();
             } catch (error) {
@@ -105,13 +106,14 @@ export function EditProfileContainer() {
                         value={formData.username}
                         onChange={handleChange}
                         placeholder="Username"
+                        readOnly={true}
                     />
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">Full name</h3>
                     <Input
-                        name="fullname"
-                        value={formData.fullname}
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         placeholder="Full name"
                     />
@@ -123,14 +125,15 @@ export function EditProfileContainer() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        readOnly={true}
                     />
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">Phone number</h3>
                     <Input
                         placeholder="Phone number"
-                        name="phonenumber"
-                        value={formData.phonenumber}
+                        name="phoneNumber"
+                        value={formData.phoneNumber}
                         onChange={handleChange}
                     />
                 </div>
@@ -138,8 +141,8 @@ export function EditProfileContainer() {
                     <h3 className="label-input">Date of birth</h3>
                     <Input
                         placeholder="Date of Birth"
-                        value={formData.dateOfBirth}
-                        name="dateofbirth"
+                        value={formData.birthDate}
+                        name="birthDate"
                         type="date"
                         onChange={handleChange}
                     />

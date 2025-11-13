@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
       setUser(decodedUser);
       localStorage.setItem('pokedecks_token', data.token);
 
-      navigate('/'); 
+      navigate('/marketplace'); 
 
     } catch (error) {
       console.error("Failed to login:", error.message);
@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
     setUser(null);
     localStorage.removeItem('pokedecks_token');
     
-    navigate('/home'); 
+    navigate('/'); 
   };
   const value = {
     token,
