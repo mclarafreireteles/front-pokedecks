@@ -41,7 +41,7 @@ export function Navbar() {
                     {isAuthenticated ? (
                         <NavbarProfileDropdown />
                 ) : (
-                    <Link to="/home" className="join-us-link">
+                    <Link to="/" className="join-us-link">
                         <h3>Join us!</h3>
                     </Link>
                 )}

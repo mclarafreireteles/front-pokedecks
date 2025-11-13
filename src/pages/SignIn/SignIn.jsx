@@ -24,7 +24,7 @@ export function Login(){
                 <div className="login-right-col">
                     <h1 className="Principal_text_introduction">Hello, Trainer!</h1>
                     <p className="Secondary_text_introduction">Enter your pokerecords and start the journey with us</p>
-                    <Button typeColor="secondary" onClick={() => handleOtherPage('/home/register')}>Register</Button>
+                    <Button typeColor="secondary" onClick={() => handleOtherPage('/register')}>Register</Button>
                 </div>
             </div>
         </main>

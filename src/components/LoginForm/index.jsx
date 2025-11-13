@@ -42,12 +42,12 @@ export function LoginForm() {
         try {
             const data = await login(formData.email, formData.password);
 
-            setIsLoading(false);
+            // setIsLoading(false);
             console.log('Login bem-sucedido!', data);
 
             if (data.token) {
                 localStorage.setItem('authToken', data.token);
-                navigate('/home');
+                navigate('/marketplace');
             } else {
                 setError('Token não recebido do servidor.');
             }

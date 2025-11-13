@@ -48,7 +48,7 @@ export function RegisterForm() {
             setSuccess(`Usuário ${registeredUser.username} registrado com sucesso!`);
 
             setFormData({ name: '', username: '', email: '', password: '' });
-            navigate('/home/register/success');
+            navigate('/register/success');
         } catch (err) {
             setIsLoading(false);
             setError(err.message);
