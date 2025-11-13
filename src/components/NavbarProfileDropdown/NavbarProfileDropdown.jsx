@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 import { FiUser } from 'react-icons/fi';
 import Avatar from '@mui/material/Avatar';
-import Logout from '@mui/icons-material/Logout';
+import Logout from '@mui/icons-material/Logout'; //TODO: trocar esse icone de logout
 
 export function NavbarProfileDropdown() {
     const { logout, user } = useAuth();

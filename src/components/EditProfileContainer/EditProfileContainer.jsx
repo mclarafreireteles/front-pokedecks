@@ -2,6 +2,9 @@ import './editprofilecontainer.style.css'
 
 import { useState, useEffect } from 'react';
 
+import * as userService from '../../services/userService';
+import { useAuth } from '../../contexts/AuthContext';
+
 import { FiTrash } from 'react-icons/fi';
 import { FiSave } from "react-icons/fi";
 
@@ -10,6 +13,8 @@ import { Input } from "../Input/Input";
 import { Button } from "../Button/Button";
 
 export function EditProfileContainer() {
+
+    const { logout } = useAuth();
 
     const [formData, setFormData] = useState({
         username: "",
@@ -26,37 +31,18 @@ export function EditProfileContainer() {
     useEffect(() => {
         async function fetchUserData() {
             try {
-                const token = localStorage.getItem('pokedecks_token');
-
-                if (!token) {
-                    throw new Error('usuário nao autenticado faça o login')
-                }
-
-                const response = await fetch('https://pokedecks-backend-with-spring.onrender.com/api/users/me', {
-                    method: 'GET',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Falha ao buscar dados do usuário')
-                }
-
-                const data = await response.json();
-
+                const data = await userService.getUserProfile();
                 setFormData(data);
-
             } catch (error) {
-                console.error(error)
-                setError(error.message)
+                console.error(error);
+                setError(error.message);
             } finally {
                 setIsLoading(false);
             }
         }
         fetchUserData();
     }, []);
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -66,18 +52,38 @@ export function EditProfileContainer() {
         }))
     }
 
-    const handleSave = (e) => {
-        e.preventDefault(); 
-        console.log("Dados para salvar:", formData);
-        // Aqui você chamaria sua API de "UPDATE" (ex: PUT /api/users/me)
-        alert("Dados salvos (simulação)!");
+    const handleSave = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            await userService.updateUserProfile(formData);
+            alert("Perfil atualizado com sucesso!");
+        } catch (error) {
+            console.error(error);
+            setError(error.message);
+            alert("Erro ao salvar perfil: " + error.message);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
-    const handleDelete = () => {
-        if (window.confirm("Tem certeza que deseja excluir seu perfil?")) {
-            console.log("Excluindo perfil...");
-            // Aqui você chamaria sua API de "DELETE" (ex: DELETE /api/users/me)
-            alert("Perfil excluído (simulação)!");
+    const handleDelete = async () => {
+        if (window.confirm("Tem certeza que deseja excluir seu perfil? Esta ação não pode ser desfeita.")) {
+            setIsLoading(true); 
+            setError(null);
+
+            try {
+                await userService.deleteUserProfile();
+                alert("Perfil excluído com sucesso.");
+                logout();
+            } catch (error) {
+                console.error(error);
+                setError(error.message);
+                alert("Erro ao excluir perfil: " + error.message);
+                setIsLoading(false);
+            }
         }
     };
 
@@ -86,7 +92,7 @@ export function EditProfileContainer() {
     }
 
     if (error) {
-        return <div>Erro: {error}</div>;
+        return <div>Erro: {error}</div>; //TODO: melhorar estilização desse erro
     }
 
     return (
@@ -94,26 +100,26 @@ export function EditProfileContainer() {
             <div className="input-container">
                 <div className="input-container-label">
                     <h3 className="label-input">Username</h3>
-                    <Input 
+                    <Input
                         name="username"
                         value={formData.username}
                         onChange={handleChange}
-                        placeholder="Username" 
+                        placeholder="Username"
                     />
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">Full name</h3>
-                    <Input 
+                    <Input
                         name="fullname"
                         value={formData.fullname}
                         onChange={handleChange}
-                        placeholder="Full name" 
+                        placeholder="Full name"
                     />
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">E-mail</h3>
-                    <Input 
-                        placeholder="E-mail" 
+                    <Input
+                        placeholder="E-mail"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
@@ -121,8 +127,8 @@ export function EditProfileContainer() {
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">Phone number</h3>
-                    <Input 
-                        placeholder="Phone number" 
+                    <Input
+                        placeholder="Phone number"
                         name="phonenumber"
                         value={formData.phonenumber}
                         onChange={handleChange}
@@ -130,9 +136,9 @@ export function EditProfileContainer() {
                 </div>
                 <div className="input-container-label">
                     <h3 className="label-input">Date of birth</h3>
-                    <Input 
+                    <Input
                         placeholder="Date of Birth"
-                        value={formData.dateOfBirth} 
+                        value={formData.dateOfBirth}
                         name="dateofbirth"
                         type="date"
                         onChange={handleChange}
@@ -142,23 +148,23 @@ export function EditProfileContainer() {
                     <h3 className="label-input">Address</h3>
                     <Input
                         placeholder="Address"
-                        value={formData.address} 
+                        value={formData.address}
                         name="address"
                         onChange={handleChange}
                     />
                 </div>
             </div>
             <div className="btn-container">
-                <Button 
-                    icon={FiTrash} 
+                <Button
+                    icon={FiTrash}
                     typeColor="danger"
                     type="button"
                     onClick={handleDelete}
                 >
                     Delete profile
                 </Button>
-                <Button 
-                    icon={FiSave} 
+                <Button
+                    icon={FiSave}
                     typeColor="primary"
                     type="submit"
                     onClick={handleSave}

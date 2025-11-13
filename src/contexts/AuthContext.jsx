@@ -16,7 +16,7 @@ export function AuthProvider({ children }) {
     if (storedToken) {
       try {
         const decodedUser = jwtDecode(storedToken);
-        setToken(decodedUser);
+        setToken(storedToken);
         setUser(decodedUser)
       } catch (error) {
         console.error('Invalid token:', error);
