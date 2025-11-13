@@ -1,6 +1,6 @@
 # PokéDecks Frontend
 
-Este é o repositório do frontend para a aplicação PokéDecks, uma plataforma para catalogar e gerenciar cards de Pokémon.
+Este é o repositório do frontend para a aplicação PokéDecks, um e-commerce de cards de Pokémon.
 
 O projeto foi construído com **React** e **Vite**.
 
