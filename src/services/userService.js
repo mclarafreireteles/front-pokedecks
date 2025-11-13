@@ -1,6 +1,6 @@
 import { fetchAuthenticated } from './apiClient';
 
-const API_ENDPOINT = '/api/users/me';
+const API_ENDPOINT = '/users/me';
 
 /**
  * Busca os dados do perfil do usuário logado.

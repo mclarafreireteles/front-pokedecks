@@ -27,7 +27,9 @@ export function Navbar() {
             <div className="left-container">
                 <h1>poke<span>decks</span></h1>
                 <div className="navigation">
-                    <h3>Marketplace</h3>
+                     <Link to="/marketplace" className="join-us-link">
+                        <h3>Marketplace</h3>
+                    </Link>
                     <DropdownList list={setsList} title="Sets"/>
                 </div>
             </div>

@@ -45,7 +45,7 @@ export function NavbarProfileDropdown() {
                 <ul className="dropdown-menu">
                     <li
                         className="dropdown-item"
-                        onClick={() => navigate('/home/profile')}
+                        onClick={() => navigate('/profile')}
                     >
                         <FiUser fontSize="small" style={{ marginRight: '8px' }} />
                         <span>My profile</span>

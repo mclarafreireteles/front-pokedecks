@@ -15,13 +15,13 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<Marketplace />} />
+      <Route path="/marketplace" element={<Marketplace />} />
       
-      <Route path="/home" element={<LandingPage />} />
-      <Route path="/home/login" element={<Login />} />
-      <Route path="/home/register" element={<Register />} />
-      <Route path="/home/register/success" element={<Success />} />
-      <Route path="/home/profile" element={<Profile />} />
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/register/success" element={<Success />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   )
 }
