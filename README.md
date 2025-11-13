@@ -34,7 +34,7 @@ O frontend precisa saber onde a API do backend está localizada.
 2.  Adicione a seguinte variável de ambiente a ele:
 
     ```env
-    VITE_API_BASE_URL=[https://pokedecks-backend-with-spring.onrender.com/api](https://pokedecks-backend-with-spring.onrender.com/api)
+    VITE_API_BASE_URL=https://pokedecks-backend-with-spring.onrender.com/api
     ```
 
 ### 4. Rodando o Projeto
