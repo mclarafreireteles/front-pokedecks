@@ -1,16 +1,56 @@
-# React + Vite
+# PokéDecks Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o repositório do frontend para a aplicação PokéDecks, uma plataforma para catalogar e gerenciar cards de Pokémon.
 
-Currently, two official plugins are available:
+O projeto foi construído com **React** e **Vite**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Como Começar (Frontend)
 
-## React Compiler
+Siga estes passos para rodar o projeto localmente na sua máquina.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Pré-requisitos
 
-## Expanding the ESLint configuration
+* [Node.js](https://nodejs.org/) (versão 18 ou mais recente)
+* `npm` ou `yarn`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Instalação
+
+1.  **Clone o repositório:**
+    ```bash
+    git clone https://github.com/mclarafreireteles/front-pokedecks.git
+    cd front-pokedecks
+    ```
+
+2.  **Instale as dependências:**
+    ```bash
+    npm install
+    ```
+
+### 3. Configuração do Ambiente
+
+O frontend precisa saber onde a API do backend está localizada.
+
+1.  Crie um arquivo chamado `.env.local` na raiz do projeto.
+2.  Adicione a seguinte variável de ambiente a ele:
+
+    ```env
+    VITE_API_BASE_URL=[https://pokedecks-backend-with-spring.onrender.com/api](https://pokedecks-backend-with-spring.onrender.com/api)
+    ```
+
+### 4. Rodando o Projeto
+
+Após a instalação, inicie o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+O projeto estará disponível no seu navegador em http://localhost:5173
+
+## 🔌 API do Backend
+O backend é uma aplicação Java Spring Boot separada que fornece todos os dados e lógica de autenticação.
+
+URL Base da API: https://pokedecks-backend-with-spring.onrender.com
+
+Documentação (Swagger): A API está 100% documentada usando Swagger. Você pode ver, testar e entender todos os endpoints disponíveis publicamente no link abaixo:
+
+https://pokedecks-backend-with-spring.onrender.com/swagger-ui.html

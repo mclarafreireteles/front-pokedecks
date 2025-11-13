@@ -3,6 +3,7 @@ import './profile.style.css'
 import { EditProfileContainer } from "../../components/EditProfileContainer/EditProfileContainer";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { PageName } from "../../components/PageName/PageName";
+import { Footer } from '../../components/Footer/Footer';
 
 export function Profile(){
     return (
@@ -14,6 +15,7 @@ export function Profile(){
             <div className="profile-container">
                 <EditProfileContainer/>
             </div>
+            <Footer/>
         </>
     )
 }

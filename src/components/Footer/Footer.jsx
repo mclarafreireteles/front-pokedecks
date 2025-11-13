@@ -20,7 +20,7 @@ export function Footer(){
             </div>
             <hr className="footer-divider" />
             <div className="copyright">
-                <h3>© Copyright 2025, All Rights Reserved by ClarityUI</h3>
+                <h3>© Copyright 2025, All Rights Reserved by PokeDecks</h3>
             </div>
         </div>
     )
