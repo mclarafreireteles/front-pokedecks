@@ -4,16 +4,14 @@ import { useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
 import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
+import { useNavigate } from 'react-router-dom';
+import { FiUser } from 'react-icons/fi';
 import Avatar from '@mui/material/Avatar';
 import Logout from '@mui/icons-material/Logout';
 
 export function NavbarProfileDropdown() {
     const { logout, user } = useAuth();
-    // const [anchorEl, setAnchorEl] = useState(null);
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
 
@@ -32,7 +30,6 @@ export function NavbarProfileDropdown() {
         setIsOpen(false); 
     }
 
-
     return (
         <div className='dropdown-container'>
             <IconButton
@@ -46,6 +43,13 @@ export function NavbarProfileDropdown() {
             </IconButton>
             {isOpen && (
                 <ul className="dropdown-menu">
+                    <li
+                        className="dropdown-item"
+                        onClick={() => navigate('/home/profile')}
+                    >
+                        <FiUser fontSize="small" style={{ marginRight: '8px' }} />
+                        <span>My profile</span>
+                    </li>
                     <li
                         className="dropdown-item"
                         onClick={handleLogoutClick}
