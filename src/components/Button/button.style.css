@@ -20,7 +20,7 @@
 
 .btn-secondary  {
     border: 1px solid var(--main-500);
-    background-color: var(--main-50);
+    background-color: var(--secondary-50);
     color: var(--main-500);
 }
 

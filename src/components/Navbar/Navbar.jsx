@@ -27,7 +27,7 @@ export function Navbar() {
             <div className="left-container">
                 <h1>poke<span>decks</span></h1>
                 <div className="navigation">
-                     <Link to="/marketplace" className="join-us-link">
+                     <Link to="/" className="join-us-link">
                         <h3>Marketplace</h3>
                     </Link>
                     <DropdownList list={setsList} title="Sets"/>
@@ -41,7 +41,7 @@ export function Navbar() {
                     {isAuthenticated ? (
                         <NavbarProfileDropdown />
                 ) : (
-                    <Link to="/" className="join-us-link">
+                    <Link to="/authentication" className="join-us-link">
                         <h3>Join us!</h3>
                     </Link>
                 )}

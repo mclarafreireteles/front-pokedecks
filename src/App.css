@@ -9,14 +9,14 @@ html, body, #root {
 }
 
 body {
-  background-color: var(--main-50);
+  background-color: var(--secondary-50);
 }
 
 main {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: var(--main-50);
+  background-color: var(--secondary-50);
 }
 
 .page-content {

@@ -15,9 +15,9 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/marketplace" element={<Marketplace />} />
+      <Route path="/authentication" element={<LandingPage />} />
       
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<Marketplace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/register/success" element={<Success />} />
