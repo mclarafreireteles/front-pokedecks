@@ -21,7 +21,6 @@
     
 }
 
-
 .content-footer h1 span {
     color: var(--main-500);
     
@@ -70,7 +69,7 @@
 }
 
 .footer-divider {
-  border: 0;
-  border-top: 1px solid #e0e0e0;
-  margin: 1.5rem 0;
+    border: 0;
+    border-top: 1px solid #e0e0e0;
+    margin: 1.5rem 0;
 }

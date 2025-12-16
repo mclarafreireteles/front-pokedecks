@@ -25,7 +25,7 @@ export function ProductCard({ product }) {
     <div className="product-card" onClick={handleCardClick}>
       <div className="product-image-container">
         <img 
-          src={product.imageUrl || "https://via.placeholder.com/300?text=Sem+Imagem"} 
+          src={product.imageUrl ? `${product.imageUrl}/high.webp` : "https://via.placeholder.com/300?text=Sem+Imagem"} 
           alt={product.name} 
           className="product-image" 
         />

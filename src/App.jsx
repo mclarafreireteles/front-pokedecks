@@ -8,6 +8,7 @@ import { Login } from './pages/SignIn/SignIn'
 import { Register } from './pages/Register/Register'
 import { Success } from './pages/Success/Success'
 import { Profile } from './pages/Profile/Profile'
+import { Product } from './pages/Product/Product'
 
 
 
@@ -15,13 +16,14 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/authentication" element={<LandingPage />} />
+      <Route path="/marketplace" element={<Marketplace />} />
       
-      <Route path="/" element={<Marketplace />} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/register/success" element={<Success />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/product" element={<Product />} />
     </Routes>
   )
 }
