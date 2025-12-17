@@ -8,7 +8,9 @@ import { Register } from './pages/Register/Register'
 import { Success } from './pages/Success/Success'
 import { Profile } from './pages/Profile/Profile'
 import { Product } from './pages/Product/Product'
-import { Orders } from './pages/adm_Orders/orders'
+import { Orders } from './pages/admin/adminOrders/Orders'
+import { Cards } from './pages/admin/adminCards/Cards'
+import { Sets } from './pages/admin/adminSets/Sets'
 
 
 
@@ -24,7 +26,9 @@ function App() {
       <Route path="/register/success" element={<Success />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/product/:id" element={<Product />} />
-      <Route path='/orders' element={<Orders />}/>
+      <Route path='/admin/orders' element={<Orders />}/>
+      <Route path='/admin/cards' element={<Cards />}/>
+      <Route path='/admin/sets' element={<Sets />}/>
     </Routes>
   )
 }

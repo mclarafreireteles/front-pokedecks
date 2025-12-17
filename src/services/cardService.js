@@ -21,3 +21,13 @@ export const getCardById = async (id) => {
     method: 'GET'
   });
 };
+
+/**
+ * Deleta uma única carta pelo ID.
+ * DELETE /api/cards/{id}
+ */
+export const deleteCard = async (id) => {
+    return fetchAuthenticated(`${API_ENDPOINT}/${id}`, {
+        method: 'DELETE'
+    });
+};
