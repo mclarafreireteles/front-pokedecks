@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Navbar } from "../../components/Navbar/Navbar"
-import { Footer } from "../../components/Footer/Footer"
+import { Navbar } from "../../../components/Navbar/Navbar"
+import { Footer } from "../../../components/Footer/Footer"
 import {
   Table,
   TableBody,
@@ -20,7 +20,7 @@ import {
 } from '@mui/material';
 
 // Ícones
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'; // Os 3 pontinhos horizontais
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import AddIcon from '@mui/icons-material/Add';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -31,11 +31,9 @@ export function Orders(){
   const [selectedRowId, setSelectedRowId] = useState(null);
   const open = Boolean(anchorEl);
 
-  // Simulação da API
   useEffect(() => {
-    // Aqui virá o seu fetch/axios
     const mockData = [
-      { id: 'Body', name: 'Body', customer: 'Body', total: 'Body' }, // Dados placeholder como na imagem
+      { id: 'Body', name: 'Body', customer: 'Body', total: 'Body' },
       { id: '001', name: 'Macbook Pro', customer: 'João Silva', total: 'R$ 12.000' },
       { id: '002', name: 'Iphone 15', customer: 'Maria Souza', total: 'R$ 8.500' },
       { id: '003', name: 'Monitor Dell', customer: 'Carlos A.', total: 'R$ 1.200' },
