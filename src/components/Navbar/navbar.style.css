@@ -57,6 +57,9 @@
 .join-us-link {
     text-decoration: none;
 }
+.icons-link {
+    text-decoration: none;
+}
 
 .usertab h3 {
     font-family: var(--font-family);

@@ -27,7 +27,7 @@ export function Navbar() {
             <div className="left-container">
                 <h1>poke<span>decks</span></h1>
                 <div className="navigation">
-                     <Link to="/" className="join-us-link">
+                     <Link to="/marketplace" className="join-us-link">
                         <h3>Marketplace</h3>
                     </Link>
                     <DropdownList list={setsList} title="Sets"/>
@@ -36,12 +36,16 @@ export function Navbar() {
             <div className="right-container">
                 <SearchInput placeholder="Venusar" />
                 <div className="usertab">
-                    <FiHeart size={24} />
-                    <FiShoppingCart size={24}/>
+                    <Link to="/favorites" className="icons-link">
+                        <FiHeart size={24} />
+                    </Link>
+                    <Link to="/cart" className="icons-link">
+                        <FiShoppingCart size={24}/>
+                    </Link>
                     {isAuthenticated ? (
                         <NavbarProfileDropdown />
                 ) : (
-                    <Link to="/authentication" className="join-us-link">
+                    <Link to="/" className="join-us-link">
                         <h3>Join us!</h3>
                     </Link>
                 )}

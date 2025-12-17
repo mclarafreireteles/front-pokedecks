@@ -1,0 +1,119 @@
+.product-page-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 60px;
+    align-items: start;
+}
+
+.product-image-section {
+    display: flex;
+    justify-content: center;
+    background-color: #f8f9fa;
+    padding: 40px;
+    border-radius: 16px;
+}
+
+.product-detail-image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3)); 
+}
+
+.product-info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.product-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.product-rarity-badge {
+    display: inline-block;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.product-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2e7d32;
+}
+
+.stock-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.buy-button {
+    background-color: #ffcc00; 
+    color: #333;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    width: 100%;
+}
+
+.buy-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+}
+
+.specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 20px;
+    background: white;
+    border: 1px solid #eee;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.spec-item h4 {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+}
+
+.spec-item p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+    color: #333;
+}
+
+.rightContainer {
+    padding-top: 32px;
+}
+
+.productContainer {
+    display: flex;
+    justify-content: center;
+    gap: 96px;
+}
+
+@media (max-width: 768px) {
+    .product-page-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}

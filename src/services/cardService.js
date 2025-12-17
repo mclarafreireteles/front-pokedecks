@@ -11,3 +11,13 @@ export const getAllCards = async () => {
     method: 'GET'
   });
 };
+
+/**
+ * Busca os detalhes de uma única carta pelo ID.
+ * GET /api/cards/{id}
+ */
+export const getCardById = async (id) => {
+  return fetchAuthenticated(`/cards/${id}`, {
+    method: 'GET'
+  });
+};
