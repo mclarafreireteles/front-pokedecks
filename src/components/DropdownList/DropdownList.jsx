@@ -35,7 +35,6 @@ export function DropdownList({ list = [], title = "Opções", onItemClick }) {
       {isOpen && (
         <ul className="dropdown-menu">
           {list.map((item) => (
-
             <li
               key={item.id}
               className="dropdown-item"
