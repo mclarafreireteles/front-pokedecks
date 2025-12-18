@@ -8,12 +8,30 @@ export const getAllSets = async () => {
     });
 };
 
-/**
- * Deleta um único set pelo ID.
- * DELETE /api/cards/{id}
- */
 export const deleteSet= async (id) => {
     return fetchAuthenticated(`${API_ENDPOINT}/${id}`, {
         method: 'DELETE'
+    });
+};
+
+export const getSetById = async (id) => {
+    return fetchAuthenticated(`${API_ENDPOINT}/${id}`, {
+        method: 'GET'
+    });
+};  
+
+export const createSet = async (setData) => {
+    return fetchAuthenticated(API_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(setData)
+    });
+};
+
+export const updateSet = async (id, setData) => {
+    return fetchAuthenticated(`${API_ENDPOINT}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(setData)
     });
 };
