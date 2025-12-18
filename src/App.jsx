@@ -12,23 +12,28 @@ import { Orders } from './pages/admin/adminOrders/Orders'
 import { Cards } from './pages/admin/adminCards/Cards'
 import { Sets } from './pages/admin/adminSets/Sets'
 
+import { AdminRoute } from './components/AdminRoute/AdminRoute'
+
 
 
 function App() {
 
   return (
     <Routes>
-      <Route path="/marketplace" element={<Marketplace />} />
       <Route path="/" element={<LandingPage />} />
-      <Route path="/" element={<Marketplace />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/register/success" element={<Success />} />
+
       <Route path="/profile" element={<Profile />} />
       <Route path="/product/:id" element={<Product />} />
-      <Route path='/admin/orders' element={<Orders />}/>
-      <Route path='/admin/cards' element={<Cards />}/>
-      <Route path='/admin/sets' element={<Sets />}/>
+      <Route path="/marketplace" element={<Marketplace />} />
+
+      <Route element={<AdminRoute />}>
+        <Route path='/admin/orders' element={<Orders />} />
+        <Route path='/admin/cards' element={<Cards />} />
+        <Route path='/admin/sets' element={<Sets />} />
+      </Route>
     </Routes>
   )
 }

@@ -1,21 +1,42 @@
 import './navbar-profile.style.css'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
+
+import { FiUser, FiLogOut, FiSettings } from 'react-icons/fi';
 
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { FiUser } from 'react-icons/fi';
 import Avatar from '@mui/material/Avatar';
 import Logout from '@mui/icons-material/Logout'; //TODO: trocar esse icone de logout
+
+import * as userService from '../../services/userService';
 
 export function NavbarProfileDropdown() {
     const { logout, user } = useAuth();
     const navigate = useNavigate();
+
     const [isOpen, setIsOpen] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
 
 
-    console.log("Dados do usuário no token:", user);
+    useEffect(() => {
+        async function checkUserRole() {
+            try {
+                if (user) {
+                    const profileData = await userService.getUserProfile();
+                    
+                    if (profileData.role === 'ADMIN') {
+                        setIsAdmin(true);
+                    }
+                }
+            } catch (error) {
+                console.error("Erro ao verificar permissões:", error);
+            }
+        }
+
+        checkUserRole();
+    }, [user]);
 
     if (!user) {
         return null;
@@ -43,6 +64,32 @@ export function NavbarProfileDropdown() {
             </IconButton>
             {isOpen && (
                 <ul className="dropdown-menu">
+                    {isAdmin && (
+                        <>
+                            <li
+                                className="dropdown-item"
+                                onClick={() => {
+                                    navigate('/admin/cards');
+                                    setIsOpen(false);
+                                }}
+                                style={{ borderBottom: '1px solid #eee' }}
+                            >
+                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: '#d32f2f' }} />
+                                <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>Cards Panel</span>
+                            </li>
+                            <li
+                                className="dropdown-item"
+                                onClick={() => {
+                                    navigate('/admin/sets');
+                                    setIsOpen(false);
+                                }}
+                                style={{ borderBottom: '1px solid #eee' }} 
+                            >
+                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: '#d32f2f' }} />
+                                <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>Sets Panel</span>
+                            </li>
+                        </>
+                    )}
                     <li
                         className="dropdown-item"
                         onClick={() => navigate('/profile')}
