@@ -1,6 +1,7 @@
 import './product-card.style.css';
 import { useNavigate } from 'react-router-dom';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useCart } from '../../contexts/CartContext';
 
 const formatCurrency = (value) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -11,6 +12,7 @@ const formatCurrency = (value) => {
 
 export function ProductCard({ product }) {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const handleCardClick = () => {
     navigate(`/product/${product.id}`);
@@ -18,6 +20,7 @@ export function ProductCard({ product }) {
 
   const handleAddToCart = (e) => {
     e.stopPropagation(); 
+    addToCart(product);
     console.log("Adicionar ao carrinho:", product.id);
   };
 

@@ -13,6 +13,7 @@ import { Cards } from './pages/admin/adminCards/Cards'
 import { Sets } from './pages/admin/adminSets/Sets'
 
 import { AdminRoute } from './components/AdminRoute/AdminRoute'
+import { Cart } from './pages/Cart/Cart'
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/product/:id" element={<Product />} />
       <Route path="/marketplace" element={<Marketplace />} />
+      <Route path="/cart" element={<Cart/>} /> 
 
       <Route element={<AdminRoute />}>
         <Route path='/admin/orders' element={<Orders />} />
