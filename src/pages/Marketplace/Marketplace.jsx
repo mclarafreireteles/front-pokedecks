@@ -39,7 +39,7 @@ export function Marketplace() {
             <div className="page-content">
                 {isLoading ? (
                     <div style={{ textAlign: 'center', padding: '50px' }}>
-                        <p>Carregando cartas...</p>
+                        <p>Loading cards...</p>
                     </div>
                 ) : (
                     <div className="cards-grid">
