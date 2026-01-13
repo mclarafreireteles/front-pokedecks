@@ -3,7 +3,6 @@ import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
 
-// Material UI
 import {
     Container,
     Typography,
@@ -16,7 +15,6 @@ import {
     Avatar
 } from "@mui/material";
 
-// Icons
 import { FiTrash2, FiMinus, FiPlus, FiShoppingBag } from "react-icons/fi";
 
 export function Cart() {
@@ -31,7 +29,7 @@ export function Cart() {
         <main>
             <Navbar isLogged={true} />
             
-            <Container maxWidth="lg" sx={{ py: 5, minHeight: '80vh' }}>
+            <Container maxWidth="lg" sx={{ py: 5, minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
                 <Typography variant="h4" fontWeight="bold" gutterBottom>
                     Seu Carrinho
                 </Typography>
@@ -41,8 +39,8 @@ export function Cart() {
                     <Box 
                         display="flex" 
                         flexDirection="column" 
-                        alignItems="center" 
-                        justifyContent="center" 
+                        alignItems="space-between" 
+                        justifyContent="space-between" 
                         py={10}
                     >
                         <FiShoppingBag size={60} color="#ccc" />
@@ -59,14 +57,14 @@ export function Cart() {
                     </Box>
                 ) : (
                     // --- LISTA DE ITENS ---
-                    <Grid container spacing={4}>
+                    <Grid container spacing={4} justifyContent="space-between" sx={{ mt: 2 }}>
                         {/* COLUNA ESQUERDA: ITENS */}
-                        <Grid item xs={12} md={8}>
+                        <Grid item xs={12} md={8} flexGrow={1} display={'flex'}>
                             {cartItems.map((item) => (
                                 <Paper 
                                     key={item.id} 
                                     elevation={1} 
-                                    sx={{ p: 2, mb: 2, display: 'flex', alignItems: 'center', borderRadius: 2 }}
+                                    sx={{ p: 2, mb: 2, display: 'flex', alignItems: 'center', borderRadius: 2, width: '100%', maxHeight: '100px'}}
                                 >
                                     {/* Imagem */}
                                     <Avatar 
