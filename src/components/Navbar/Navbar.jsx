@@ -58,10 +58,10 @@ export function Navbar() {
             <div className="right-container">
                 <SearchInput placeholder="Venusar" />
                 <div className="usertab">
-                    <Link to="/favorites" className="icons-link">
+                    <Link to="/favorites" className="icons-link" style={{ color: 'var(--text-black)', textDecoration: 'none' }}>
                         <FiHeart size={24} />
                     </Link>
-                    <Link to="/cart" className="icons-link">
+                    <Link to="/cart" className="icons-link" style={{ color: 'var(--text-black)', textDecoration: 'none' }}>
                         <FiShoppingCart size={24} />
                     </Link>
                     {isAuthenticated ? (
