@@ -2,6 +2,10 @@ import { useCart } from "../../contexts/CartContext";
 import { Navbar } from "../../components/Navbar/Navbar";
 import { Footer } from "../../components/Footer/Footer";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
+import * as orderService from "../../services/orderService";
+import * as userService from "../../services/userService";
+import { useState } from "react";
 
 import {
     Container,
@@ -12,17 +16,64 @@ import {
     IconButton,
     Button,
     Divider,
-    Avatar
+    Avatar,
+    CircularProgress
 } from "@mui/material";
 
 import { FiTrash2, FiMinus, FiPlus, FiShoppingBag } from "react-icons/fi";
+import { PageName } from "../../components/PageName/PageName";
 
 export function Cart() {
-    const { cartItems, removeFromCart, updateQuantity, cartTotal } = useCart();
+    const { cartItems, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+    const { user, isAuthenticated } = useAuth();
     const navigate = useNavigate();
+
+    const [isCheckingOut, setIsCheckingOut] = useState(false);
 
     const formatCurrency = (value) => {
         return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
+    };
+
+    const handleCheckout = async () => {
+        if (!isAuthenticated) {
+            alert("Você precisa estar logado para finalizar a compra.");
+            navigate('/login'); 
+            return;
+        }
+
+        setIsCheckingOut(true);
+        try {
+            const userProfile = await userService.getUserProfile();
+
+            console.log("Perfil do usuário recuperado:", userProfile);
+
+            if (!userProfile.id) {
+                throw new Error("ID do usuário não encontrado no perfil.");
+            }
+
+            const payload = {
+                userId: userProfile.id,
+                orderTime: new Date().toISOString(),
+                orderItems: cartItems.map(item => ({
+                    cardId: item.id,
+                    quantity: item.quantity
+                }))
+            };
+
+            console.log("Enviando pedido (JSON):", payload);
+
+            await orderService.createOrder(payload);
+
+            alert("Pedido realizado com sucesso!");
+            clearCart(); 
+            navigate('/my-orders');
+
+        } catch (error) {
+            console.error("Erro ao finalizar compra:", error);
+            alert("Erro ao processar o pedido. Verifique o console para detalhes.");
+        } finally {
+            setIsCheckingOut(false);
+        }
     };
 
     return (
@@ -30,35 +81,34 @@ export function Cart() {
             <Navbar isLogged={true} />
             
             <Container maxWidth="lg" sx={{ py: 5, minHeight: '80vh', display: 'flex', flexDirection: 'column' }}>
-                <Typography variant="h4" fontWeight="bold" gutterBottom>
-                    Seu Carrinho
-                </Typography>
+                <PageName>
+                    My Cart
+                </PageName>
 
                 {cartItems.length === 0 ? (
                     // --- ESTADO VAZIO ---
                     <Box 
                         display="flex" 
                         flexDirection="column" 
-                        alignItems="space-between" 
-                        justifyContent="space-between" 
+                        alignItems="center" 
+                        justifyContent="center" 
                         py={10}
                     >
                         <FiShoppingBag size={60} color="#ccc" />
                         <Typography variant="h6" color="text.secondary" sx={{ mt: 2 }}>
-                            Seu carrinho está vazio.
+                            Your cart is empty
                         </Typography>
                         <Button 
                             variant="contained" 
                             sx={{ mt: 3 }}
                             onClick={() => navigate('/marketplace')}
                         >
-                            Ver Produtos
+                            See products
                         </Button>
                     </Box>
                 ) : (
-                    // --- LISTA DE ITENS ---
+
                     <Grid container spacing={4} justifyContent="space-between" sx={{ mt: 2 }}>
-                        {/* COLUNA ESQUERDA: ITENS */}
                         <Grid item xs={12} md={8} flexGrow={1} display={'flex'}>
                             {cartItems.map((item) => (
                                 <Paper 
@@ -66,14 +116,12 @@ export function Cart() {
                                     elevation={1} 
                                     sx={{ p: 2, mb: 2, display: 'flex', alignItems: 'center', borderRadius: 2, width: '100%', maxHeight: '100px'}}
                                 >
-                                    {/* Imagem */}
                                     <Avatar 
                                         src={item.imageUrl ? `${item.imageUrl}/high.webp` : ""} 
                                         variant="rounded"
                                         sx={{ width: 80, height: 110, mr: 2, bgcolor: '#f0f0f0' }}
                                     />
 
-                                    {/* Detalhes do Produto */}
                                     <Box sx={{ flexGrow: 1 }}>
                                         <Typography variant="subtitle1" fontWeight="bold">
                                             {item.name}
@@ -106,7 +154,6 @@ export function Cart() {
                                         </IconButton>
                                     </Box>
 
-                                    {/* Botão Remover */}
                                     <IconButton 
                                         color="error" 
                                         onClick={() => removeFromCart(item.id)}
@@ -117,7 +164,6 @@ export function Cart() {
                             ))}
                         </Grid>
 
-                        {/* COLUNA DIREITA: RESUMO */}
                         <Grid item xs={12} md={4}>
                             <Paper elevation={3} sx={{ p: 3, borderRadius: 2, position: 'sticky', top: 20 }}>
                                 <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -148,9 +194,10 @@ export function Cart() {
                                     color="success" 
                                     fullWidth 
                                     size="large"
-                                    onClick={() => alert("Ir para Checkout!")}
+                                    onClick={handleCheckout}
+                                    disabled={isCheckingOut}
                                 >
-                                    Finalizar Compra
+                                    {isCheckingOut ? <CircularProgress size={24} color="inherit" /> : "Finalizar Compra"}
                                 </Button>
                             </Paper>
                         </Grid>

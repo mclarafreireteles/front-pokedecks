@@ -14,6 +14,7 @@ import { Sets } from './pages/admin/adminSets/Sets'
 
 import { AdminRoute } from './components/AdminRoute/AdminRoute'
 import { Cart } from './pages/Cart/Cart'
+import { MyOrders } from './pages/MyOrders/MyOrders';
 
 
 
@@ -30,6 +31,7 @@ function App() {
       <Route path="/product/:id" element={<Product />} />
       <Route path="/marketplace" element={<Marketplace />} />
       <Route path="/cart" element={<Cart/>} /> 
+      <Route path="/my-orders" element={<MyOrders />} />
 
       <Route element={<AdminRoute />}>
         <Route path='/admin/orders' element={<Orders />} />

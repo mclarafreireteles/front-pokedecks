@@ -3,7 +3,7 @@ import './navbar-profile.style.css'
 import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 
-import { FiUser, FiLogOut, FiSettings } from 'react-icons/fi';
+import { FiUser, FiLogOut, FiSettings, FiPackage } from 'react-icons/fi';
 
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
@@ -90,6 +90,13 @@ export function NavbarProfileDropdown() {
                             </li>
                         </>
                     )}
+                    <li
+                        className="dropdown-item"
+                        onClick={() => navigate('/my-orders')}
+                    >
+                        <FiPackage fontSize="small" style={{ marginRight: '8px' }} />
+                        <span>My orders</span>
+                    </li>
                     <li
                         className="dropdown-item"
                         onClick={() => navigate('/profile')}
