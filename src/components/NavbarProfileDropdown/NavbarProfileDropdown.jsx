@@ -74,8 +74,8 @@ export function NavbarProfileDropdown() {
                                 }}
                                 style={{ borderBottom: '1px solid #eee' }}
                             >
-                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: '#d32f2f' }} />
-                                <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>Cards Panel</span>
+                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
+                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Cards Panel</span>
                             </li>
                             <li
                                 className="dropdown-item"
@@ -85,8 +85,19 @@ export function NavbarProfileDropdown() {
                                 }}
                                 style={{ borderBottom: '1px solid #eee' }} 
                             >
-                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: '#d32f2f' }} />
-                                <span style={{ color: '#d32f2f', fontWeight: 'bold' }}>Sets Panel</span>
+                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
+                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Sets Panel</span>
+                            </li>
+                            <li
+                                className="dropdown-item"
+                                onClick={() => {
+                                    navigate('/admin/series');
+                                    setIsOpen(false);
+                                }}
+                                style={{ borderBottom: '1px solid #eee' }} 
+                            >
+                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
+                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Series Panel</span>
                             </li>
                         </>
                     )}
