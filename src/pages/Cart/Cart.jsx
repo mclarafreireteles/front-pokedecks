@@ -109,7 +109,7 @@ export function Cart() {
                 ) : (
 
                     <Grid container spacing={4} justifyContent="space-between" sx={{ mt: 2 }}>
-                        <Grid item xs={12} md={8} flexGrow={1} display={'flex'}>
+                        <Grid item xs={12} md={8} flexGrow={1} pr={8}>
                             {cartItems.map((item) => (
                                 <Paper 
                                     key={item.id} 
