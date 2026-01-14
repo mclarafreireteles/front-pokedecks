@@ -9,6 +9,7 @@ import { Footer } from "../../components/Footer/Footer";
 import { Button } from "../../components/Button/Button"; 
 
 import { FiShoppingCart } from "react-icons/fi";
+import { useCart } from "../../contexts/CartContext";
 
 import { 
     Container, 
@@ -27,20 +28,17 @@ export function Product() {
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
+    const { addToCart } = useCart(); 
+
     useEffect(() => {
         async function fetchCardData() {
             try {
                 const data = await cardService.getCardById(id);
                 
-                const productWithImage = {
-                    ...data,
-                    imageUrl: data.imageUrl ? `${data.imageUrl}/high.png` : null
-                };
+                setProduct(data); 
 
-                setProduct(productWithImage);
             } catch (error) {
-                console.error("Erro ao buscar produto:", error);
-                alert("Erro ao carregar carta.");
+                console.log(error)
             } finally {
                 setIsLoading(false);
             }
@@ -50,7 +48,10 @@ export function Product() {
     }, [id]);
 
     const handleAddToCart = () => {
-        alert(`Adicionado ${product.name} ao carrinho!`);
+        if (product) {
+            addToCart(product);
+            console.log(`Adicionado ao carrinho: ${product.name}`);
+        }
     };
 
     if (isLoading) {
@@ -65,7 +66,7 @@ export function Product() {
 
     return (
         <main>
-            <Navbar isLogged="" />
+            <Navbar isLogged={true} /> 
 
             <Container maxWidth="lg" sx={{ py: 6 }}>
                 <Grid container spacing={6} className="productContainer">
@@ -73,7 +74,7 @@ export function Product() {
                         
                             <Box 
                                 component="img"
-                                src={product.imageUrl || "https://via.placeholder.com/400x550?text=No+Image"}
+                                src={product.imageUrl ? `${product.imageUrl}/high.png` : "https://via.placeholder.com/400x550?text=No+Image"}
                                 alt={product.name}
                                 sx={{ 
                                     maxWidth: '100%', 
@@ -114,6 +115,7 @@ export function Product() {
                             <Divider />
 
                             <Box sx={{ width: '100%' }}>
+                                {/* 👈 4. O botão chama a função atualizada */}
                                 <Button 
                                     typeColor="primary"
                                     onClick={handleAddToCart}
