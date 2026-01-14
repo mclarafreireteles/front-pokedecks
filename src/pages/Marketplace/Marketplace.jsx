@@ -20,7 +20,7 @@ export function Marketplace() {
                 const data = await cardService.getAllCards();
                 const mappedProducts = data.map(card => ({
                     ...card,
-                    price: Number(card.price) || 0, //TODO: corrigir preco
+                    price: Number(card.price) || 0,
                     description: `Carta oficial ${card.name}. Quantidade em estoque: ${card.stockQuantity}`
                 }));
 
