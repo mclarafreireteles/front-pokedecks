@@ -12,6 +12,7 @@ import { Orders } from './pages/admin/adminOrders/Orders'
 import { Cards } from './pages/admin/adminCards/Cards'
 import { Sets } from './pages/admin/adminSets/Sets'
 import { Series } from './pages/admin/adminSeries/Series'
+import { AdminDashboard } from './pages/admin/AdminDashboard/AdminDashboard'
 
 import { AdminRoute } from './components/AdminRoute/AdminRoute'
 import { Cart } from './pages/Cart/Cart'
@@ -33,6 +34,7 @@ function App() {
       <Route path="/marketplace" element={<Marketplace />} />
       <Route path="/cart" element={<Cart/>} /> 
       <Route path="/my-orders" element={<MyOrders />} />
+      <Route path="/dashboard" element={<AdminDashboard />} />
       
       
 
