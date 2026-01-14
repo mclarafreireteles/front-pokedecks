@@ -65,15 +65,6 @@ export function SeriesFormDialog({ open, onClose, onSave, seriesToEdit }) {
                             required
                         />
                     </Grid>
-                    <Grid item xs={12}>
-                        <TextField
-                            label="URL do Logo"
-                            name="logoUrl"
-                            fullWidth
-                            value={formData.logoUrl}
-                            onChange={handleChange}
-                        />
-                    </Grid>
                 </Grid>
             </DialogContent>
             <DialogActions>
