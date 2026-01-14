@@ -47,7 +47,7 @@ export function Series() {
             setSelectedSeries(fullData);
             setIsModalOpen(true);
         } catch (error) {
-            alert("Erro ao carregar dados da série.");
+            alert("Erro ao carregar dados da série.", error);
         } finally {
             setIsFetchingDetails(false);
         }
@@ -74,7 +74,7 @@ export function Series() {
                 await serieService.deleteSeries(id);
                 setSeriesList(prev => prev.filter(s => s.id !== id));
             } catch (error) { 
-                alert("Erro ao excluir. Certifique-se de que não existem coleções vinculadas a esta série."); 
+                alert("Erro ao excluir. Certifique-se de que não existem coleções vinculadas a esta série.", error); 
             }
         }
     };
@@ -84,7 +84,7 @@ export function Series() {
             <Navbar isLogged={true} />
             <Container maxWidth="lg" sx={{ py: 4, minHeight: '80vh' }}>
                 <Box display="flex" justifyContent="space-between" alignItems="center" mb={4}>
-                    <Typography variant="h4" fontWeight="bold">Gerenciar Séries</Typography>
+                    <Typography variant="h4" fontWeight="bold">Manage Series</Typography>
                     <Button variant="contained" startIcon={<FiPlus />} onClick={handleOpenCreate}>
                         New Serie
                     </Button>
