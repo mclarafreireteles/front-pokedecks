@@ -1,16 +1,13 @@
 import './searchinput.style.css'
-
 import { useState } from 'react';
 import { FiSearch } from "react-icons/fi";
-
 
 export function SearchInput({ placeholder, onSearch }){
     const [searchTerm, setSearchTerm] = useState('');
 
-    const handleSearch = () => {
-        if (searchTerm.trim()) {
-            onSearch(searchTerm);
-        }
+    const handleSearch = (e) => {
+        e.preventDefault(); 
+        onSearch(searchTerm);
     };
 
     return (
