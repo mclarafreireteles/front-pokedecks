@@ -62,7 +62,7 @@ export function Product() {
         );
     }
 
-    if (!product) return <Typography variant="h6" align="center" sx={{ mt: 5 }}>Produto não encontrado.</Typography>;
+    if (!product) return <Typography variant="h6" align="center" sx={{ mt: 5 }}>Product not found.</Typography>;
 
     return (
         <main>
@@ -99,7 +99,7 @@ export function Product() {
                                     {product.name}
                                 </Typography>
                                 <Typography variant="subtitle1" color="text.secondary">
-                                    Ilustrador: {product.illustrator}
+                                    Illustrator: {product.illustrator}
                                 </Typography>
                             </Box>
 
@@ -108,27 +108,26 @@ export function Product() {
                                     {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(product.price)}
                                 </Typography>
                                 <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                                    Estoque disponível: {product.stockQuantity} unidades
+                                    Stock: {product.stockQuantity} available
                                 </Typography>
                             </Box>
 
                             <Divider />
 
                             <Box sx={{ width: '100%' }}>
-                                {/* 👈 4. O botão chama a função atualizada */}
                                 <Button 
                                     typeColor="primary"
                                     onClick={handleAddToCart}
                                     icon={FiShoppingCart}
                                     style={{ width: '100%', justifyContent: 'center' }}
                                 >
-                                    Adicionar ao Carrinho
+                                    Add to Card
                                 </Button>
                             </Box>
 
                             <Paper variant="outlined" sx={{ p: 3, borderRadius: 2, bgcolor: 'background.paper' }}>
                                 <Typography variant="h6" gutterBottom fontWeight={600}>
-                                    Especificações
+                                    Specifications
                                 </Typography>
                                 <Grid container spacing={2}>
                                     <Grid item xs={6}>

@@ -12,6 +12,7 @@ import { Orders } from './pages/admin/adminOrders/Orders'
 import { Cards } from './pages/admin/adminCards/Cards'
 import { Sets } from './pages/admin/adminSets/Sets'
 import { Series } from './pages/admin/adminSeries/Series'
+import { SetPage } from './pages/SetPage/SetPage'
 
 import { AdminRoute } from './components/AdminRoute/AdminRoute'
 import { Cart } from './pages/Cart/Cart'
@@ -33,8 +34,8 @@ function App() {
       <Route path="/marketplace" element={<Marketplace />} />
       <Route path="/cart" element={<Cart/>} /> 
       <Route path="/my-orders" element={<MyOrders />} />
-      
-      
+
+      <Route path="/set/:id" element={<SetPage />} />
 
       <Route element={<AdminRoute />}>
         <Route path='/admin/cards' element={<Cards />} />

@@ -21,7 +21,7 @@ export function Marketplace() {
                 const mappedProducts = data.map(card => ({
                     ...card,
                     price: Number(card.price) || 0,
-                    description: `Carta oficial ${card.name}. Quantidade em estoque: ${card.stockQuantity}`
+                    description: `Official card: ${card.name}. Stock: ${card.stockQuantity}`
                 }));
 
                 setProducts(mappedProducts);

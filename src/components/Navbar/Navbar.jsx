@@ -34,7 +34,7 @@ export function Navbar() {
     }, []);
 
     const handleSetClick = (item) => {
-        console.log("Set selecionado:", item);
+        navigate(`/set/${item.id}`);
     };
 
     const handleNavbarSearch = (term) => {
