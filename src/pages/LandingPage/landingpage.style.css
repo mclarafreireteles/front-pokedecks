@@ -1,4 +1,3 @@
-
 .landingpage-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -9,51 +8,51 @@
 
 .lp-content-column {
   display: grid;
-  grid-template-rows: 1fr 2fr ;
+  grid-template-rows: 1fr 2fr;
   padding-left: 80px;
   padding-right: 200px;
   padding-top: 43px;
 }
 .lp-content-column .lp-logo {
-    font-family: var(--second-family);
-    font-weight: 700;
-    font-size: 25px;
-    text-transform: lowercase;
-    color: var(--text-black);
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 25px;
+  text-transform: lowercase;
+  color: var(--text-black);
 }
 .lp-content-column .lp-logo span {
-    color: var(--main-500);
+  color: var(--main-500);
 }
 
 .text-content {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 32px;
 }
 
 .text-content-title {
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 48px;
-    color: var(--text-black);
+  font-family: var(--font-family);
+  font-weight: 700;
+  font-size: 48px;
+  color: var(--text-black);
 }
 
 .text-content-text {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 144%;
-    text-align: justify;
-    color: var(--secondary-800);
-    margin-bottom: 32px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 144%;
+  text-align: justify;
+  color: var(--secondary-800);
+  margin-bottom: 32px;
 }
 
 .lp-btn-container {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 32px;
+  align-items: center;
 }
 
 .lp-image-column img {
@@ -62,17 +61,22 @@
   object-fit: cover;
 }
 
-.btn-primary  {
-
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+.btn-primary {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
-.btn-secondary  {
-    transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+.btn-secondary {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    filter 0.3s ease;
 }
 
 .btn-primary:hover,
 .btn-secondary:hover {
-    /* transform: translateY(-3px); Move o botão 3px para cima */
-    box-shadow: 0 6px 12px rgba(122, 122, 122, 0.305); /* Adiciona uma sombra suave */
+  /* transform: translateY(-3px); Move o botão 3px para cima */
+  box-shadow: 0 6px 12px rgba(122, 122, 122, 0.305); /* Adiciona uma sombra suave */
 }

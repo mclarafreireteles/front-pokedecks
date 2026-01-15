@@ -1,38 +1,37 @@
 .dropdown-container {
-    position: relative; 
-    display: inline-block;
-    font-family: var(--font-family);
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-family);
 }
 
 .dropdown-trigger {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap:12px;
-    font-family: var(--font-family);
-    font-weight: 600;
-    font-size: 18px;
-    color:var(--text-black);
-    background: none;
-    border: none;
-    cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text-black);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 100%;
-    z-index: 10;
-    list-style-type: none;
-    padding: 4px 0; 
-    margin: 0;
-    margin-top: 8px;
-    background-color: var(--secondary-50);
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 100%;
+  z-index: 10;
+  list-style-type: none;
+  padding: 4px 0;
+  margin: 0;
+  margin-top: 8px;
+  background-color: var(--secondary-50);
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .dropdown-item {
@@ -42,7 +41,6 @@
   font-size: 0.95rem;
   color: var(--text-gray);
   cursor: pointer;
- 
 }
 
 .dropdown-item:hover {

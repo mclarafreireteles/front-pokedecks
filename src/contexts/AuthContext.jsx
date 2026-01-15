@@ -5,10 +5,10 @@ import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext(null);
 
-
 export function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -17,28 +17,32 @@ export function AuthProvider({ children }) {
       try {
         const decodedUser = jwtDecode(storedToken);
         setToken(storedToken);
-        setUser(decodedUser)
+        setUser(decodedUser);
       } catch (error) {
         console.error('Invalid token:', error);
-        localStorage.removeItem('pokedecks_token')
+        localStorage.removeItem('pokedecks_token');
       }
-
     }
+    setIsLoading(false);
   }, []);
 
   const login = async (username, password) => {
     try {
       const data = await authService.login(username, password);
-      const decodedUser = jwtDecode(data.token); 
-      
+      const decodedUser = jwtDecode(data.token);
+
       setToken(data.token);
       setUser(decodedUser);
       localStorage.setItem('pokedecks_token', data.token);
 
-      navigate('/marketplace'); 
-
+      // Redirect to dashboard if admin, otherwise to marketplace
+      if (decodedUser.role === 'ADMIN') {
+        navigate('/admin/dashboard');
+      } else {
+        navigate('/marketplace');
+      }
     } catch (error) {
-      console.error("Failed to login:", error.message);
+      console.error('Failed to login:', error.message);
       throw error;
     }
   };
@@ -47,15 +51,16 @@ export function AuthProvider({ children }) {
     setToken(null);
     setUser(null);
     localStorage.removeItem('pokedecks_token');
-    
-    navigate('/'); 
+
+    navigate('/');
   };
   const value = {
     token,
     user,
     login,
     logout,
-    isAuthenticated: !!token
+    isAuthenticated: !!token,
+    isLoading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
@@ -65,7 +70,7 @@ export function AuthProvider({ children }) {
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth deve ser usado dentro de um AuthProvider');
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };

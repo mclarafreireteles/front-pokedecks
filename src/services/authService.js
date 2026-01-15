@@ -6,17 +6,19 @@ const apiErrorMessages = {
   401: 'Invalid username or password.',
   404: 'The requested resource was not found.',
   409: 'This email or username is already registered. Please log in instead.',
-  500: 'An internal server error occurred. Please try again later.'
+  500: 'An internal server error occurred. Please try again later.',
 };
 
 const fallbackErrorMessages = {
   NETWORK: 'Could not connect to the server. Please check your connection.',
-  UNKNOWN: 'An unexpected error occurred. Please try again later.'
+  UNKNOWN: 'An unexpected error occurred. Please try again later.',
 };
 
 const isKnownErrorMessage = (message) => {
-  return Object.values(apiErrorMessages).includes(message) ||
-         Object.values(fallbackErrorMessages).includes(message);
+  return (
+    Object.values(apiErrorMessages).includes(message) ||
+    Object.values(fallbackErrorMessages).includes(message)
+  );
 };
 
 const handleApiResponse = async (response) => {
@@ -34,16 +36,15 @@ const handleApiResponse = async (response) => {
   }
 };
 
-
 export const register = async (userData) => {
   try {
     const response = await fetch(`${AUTH_API_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'accept': '*/*'
+        accept: '*/*',
       },
-      body: JSON.stringify(userData)
+      body: JSON.stringify(userData),
     });
     return await handleApiResponse(response);
   } catch (error) {
@@ -61,9 +62,9 @@ export const login = async (username, password) => {
     const response = await fetch(`${AUTH_API_URL}/authenticate`, {
       method: 'POST',
       headers: {
-        'Authorization': `Basic ${encodedCredentials}`,
-        'accept': '*/*'
-      }
+        Authorization: `Basic ${encodedCredentials}`,
+        accept: '*/*',
+      },
     });
     return await handleApiResponse(response);
   } catch (error) {

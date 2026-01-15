@@ -1,31 +1,31 @@
 .btn {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-    align-items: center;
-    border-radius: 8px;
-    padding: 16px 64px;
-    cursor: pointer;
-    font-family: var(--third-family);
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 140%;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  align-items: center;
+  border-radius: 8px;
+  padding: 16px 64px;
+  cursor: pointer;
+  font-family: var(--third-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
 }
 
-.btn-primary  {
-    background-color: var(--main-500);
-    border: none;
-    color: #fff;
+.btn-primary {
+  background-color: var(--main-500);
+  border: none;
+  color: #fff;
 }
 
-.btn-secondary  {
-    border: 1px solid var(--main-500);
-    background-color: var(--secondary-50);
-    color: var(--main-500);
+.btn-secondary {
+  border: 1px solid var(--main-500);
+  background-color: var(--secondary-50);
+  color: var(--main-500);
 }
 
 .btn-danger {
-    background-color: var(--red-main-active); 
-    border: 1px solid var(--red-main-active);
-    color: var(--secondary-50);
+  background-color: var(--red-main-active);
+  border: 1px solid var(--red-main-active);
+  color: var(--secondary-50);
 }

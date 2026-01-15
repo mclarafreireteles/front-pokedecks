@@ -2,62 +2,51 @@ import { useEffect, useState } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { Box, CircularProgress } from '@mui/material';
-
-import { getUserProfile } from '../../services/userService';
+import * as userService from '../../services/userService';
 
 export function AdminRoute() {
-    const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const { isAuthenticated, isLoading: authLoading } = useAuth();
+  const [isChecking, setIsChecking] = useState(true);
+  const [isAdmin, setIsAdmin] = useState(false);
 
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isRoleLoading, setIsRoleLoading] = useState(true);
-
-    useEffect(() => {
-        if (authLoading) return;
-
-        if (!isAuthenticated) {
-            setIsRoleLoading(false);
-            return;
+  useEffect(() => {
+    async function checkAdminRole() {
+      if (!authLoading && isAuthenticated) {
+        try {
+          // Fetch user profile to get role since JWT doesn't include it
+          const profileData = await userService.getUserProfile();
+          setIsAdmin(profileData.role === 'ADMIN');
+        } catch (error) {
+          console.error('Error checking admin permissions:', error);
+          setIsAdmin(false);
+        } finally {
+          setIsChecking(false);
         }
-
-        async function checkAdminStatus() {
-            try {
-                const profileData = await getUserProfile();
-                
-                console.log("Perfil buscado na rota admin:", profileData);
-
-                if (profileData.role === 'ADMIN') {
-                    setIsAdmin(true);
-                } else {
-                    setIsAdmin(false);
-                }
-            } catch (error) {
-                console.error("Erro ao verificar permissão de admin:", error);
-                setIsAdmin(false); 
-            } finally {
-                setIsRoleLoading(false); 
-            }
-        }
-
-        checkAdminStatus();
-
-    }, [isAuthenticated, authLoading]);
-
-
-    if (authLoading || isRoleLoading) {
-        return (
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-                <CircularProgress />
-            </Box>
-        );
+      } else if (!authLoading) {
+        setIsChecking(false);
+      }
     }
 
-    if (!isAuthenticated) {
-        return <Navigate to="/login" replace />;
-    }
+    checkAdminRole();
+  }, [authLoading, isAuthenticated]);
 
-    if (!isAdmin) {
-        return <Navigate to="/" replace />;
-    }
+  if (authLoading || isChecking) {
+    return (
+      <Box
+        sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
-    return <Outlet />;
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!isAdmin) {
+    return <Navigate to="/" replace />;
+  }
+
+  return <Outlet />;
 }

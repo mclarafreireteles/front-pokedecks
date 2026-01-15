@@ -1,6 +1,5 @@
 import { fetchAuthenticated } from './apiClient';
 
-
 const API_ENDPOINT_ME = '/users/me';
 
 const API_ENDPOINT_USERS = '/users';
@@ -10,7 +9,7 @@ const API_ENDPOINT_USERS = '/users';
  */
 export const getUserProfile = async () => {
   return fetchAuthenticated(API_ENDPOINT_ME, {
-    method: 'GET'
+    method: 'GET',
   });
 };
 
@@ -21,8 +20,8 @@ export const getUserProfile = async () => {
  */
 export const updateUserProfile = async (userId, profileData) => {
   return fetchAuthenticated(`${API_ENDPOINT_USERS}/${userId}`, {
-    method: 'PUT', 
-    body: JSON.stringify(profileData)
+    method: 'PUT',
+    body: JSON.stringify(profileData),
   });
 };
 
@@ -32,6 +31,6 @@ export const updateUserProfile = async (userId, profileData) => {
  */
 export const deleteUserProfile = async (userId) => {
   return fetchAuthenticated(`${API_ENDPOINT_USERS}/${userId}`, {
-    method: 'DELETE'
+    method: 'DELETE',
   });
 };

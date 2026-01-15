@@ -1,129 +1,124 @@
-import './navbar-profile.style.css'
+import './navbar-profile.style.css';
 
-import { useState, useEffect } from "react";
-import { useAuth } from "../../contexts/AuthContext";
+import { useState, useEffect } from 'react';
+import { useAuth } from '../../contexts/AuthContext';
 
-import { FiUser, FiLogOut, FiSettings, FiPackage } from 'react-icons/fi';
+import {
+  FiUser,
+  FiSettings,
+  FiPackage,
+  FiDatabase,
+  FiLayers,
+  FiLogOut,
+  FiBarChart2,
+} from 'react-icons/fi';
 
 import IconButton from '@mui/material/IconButton';
 import { useNavigate } from 'react-router-dom';
 import Avatar from '@mui/material/Avatar';
-import Logout from '@mui/icons-material/Logout'; //TODO: trocar esse icone de logout
 
 import * as userService from '../../services/userService';
 
 export function NavbarProfileDropdown() {
-    const { logout, user } = useAuth();
-    const navigate = useNavigate();
+  const { logout, user } = useAuth();
+  const navigate = useNavigate();
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
+  useEffect(() => {
+    async function checkUserRole() {
+      try {
+        if (user) {
+          const profileData = await userService.getUserProfile();
 
-    useEffect(() => {
-        async function checkUserRole() {
-            try {
-                if (user) {
-                    const profileData = await userService.getUserProfile();
-                    
-                    if (profileData.role === 'ADMIN') {
-                        setIsAdmin(true);
-                    }
-                }
-            } catch (error) {
-                console.error("Erro ao verificar permissões:", error);
-            }
+          if (profileData.role === 'ADMIN') {
+            setIsAdmin(true);
+          }
         }
-
-        checkUserRole();
-    }, [user]);
-
-    if (!user) {
-        return null;
+      } catch (error) {
+        // Silently fail - user will just not see admin options
+        // This prevents redirect loops when token expires
+        console.error('Error checking permissions:', error);
+      }
     }
 
-    const toggleDropdown = () => {
-        setIsOpen(prev => !prev);
-    };
+    checkUserRole();
+  }, [user]);
 
-    const handleLogoutClick = () => {
-        logout();
-        setIsOpen(false); 
-    }
+  if (!user) {
+    return null;
+  }
 
-    return (
-        <div className='dropdown-container'>
-            <IconButton
-                onClick={toggleDropdown}
-                size="small"
-                aria-haspopup="true"
-            >
-                <Avatar sx={{ width: 40, height: 40, fontSize: '1rem', bgcolor: 'var(--main-500)' }}>
-                    {user.sub[0].toUpperCase()}
-                </Avatar>
-            </IconButton>
-            {isOpen && (
-                <ul className="dropdown-menu">
-                    {isAdmin && (
-                        <>
-                            <li
-                                className="dropdown-item"
-                                onClick={() => {
-                                    navigate('/admin/cards');
-                                    setIsOpen(false);
-                                }}
-                                style={{ borderBottom: '1px solid #eee' }}
-                            >
-                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
-                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Cards Panel</span>
-                            </li>
-                            <li
-                                className="dropdown-item"
-                                onClick={() => {
-                                    navigate('/admin/sets');
-                                    setIsOpen(false);
-                                }}
-                                style={{ borderBottom: '1px solid #eee' }} 
-                            >
-                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
-                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Sets Panel</span>
-                            </li>
-                            <li
-                                className="dropdown-item"
-                                onClick={() => {
-                                    navigate('/admin/series');
-                                    setIsOpen(false);
-                                }}
-                                style={{ borderBottom: '1px solid #eee' }} 
-                            >
-                                <FiSettings fontSize="small" style={{ marginRight: '8px', color: 'var(--main-800)' }} />
-                                <span style={{ color: 'var(--main-800)', fontWeight: 'bold' }}>Series Panel</span>
-                            </li>
-                        </>
-                    )}
-                    <li
-                        className="dropdown-item"
-                        onClick={() => navigate('/my-orders')}
-                    >
-                        <FiPackage fontSize="small" style={{ marginRight: '8px' }} />
-                        <span>My orders</span>
-                    </li>
-                    <li
-                        className="dropdown-item"
-                        onClick={() => navigate('/profile')}
-                    >
-                        <FiUser fontSize="small" style={{ marginRight: '8px' }} />
-                        <span>My profile</span>
-                    </li>
-                    <li
-                        className="dropdown-item"
-                        onClick={handleLogoutClick}
-                    >
-                        <Logout fontSize="small" style={{ marginRight: '8px' }} />
-                        <span>Logout</span>
-                    </li>
-                </ul>
-            )}
-        </div>
-    )
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleLogoutClick = () => {
+    logout();
+    setIsOpen(false);
+  };
+
+  const handleNavigate = (path) => {
+    navigate(path);
+    setIsOpen(false);
+  };
+
+  return (
+    <div className="dropdown-container">
+      <IconButton onClick={toggleDropdown} size="small" aria-haspopup="true">
+        <Avatar sx={{ width: 40, height: 40, fontSize: '1rem', bgcolor: 'var(--main-500)' }}>
+          {user.sub[0].toUpperCase()}
+        </Avatar>
+      </IconButton>
+      {isOpen && (
+        <ul className="profile-dropdown-menu">
+          {isAdmin && (
+            <>
+              <li
+                className="profile-dropdown-item profile-dropdown-item-admin"
+                onClick={() => handleNavigate('/admin/dashboard')}
+              >
+                <FiBarChart2 className="profile-dropdown-icon" />
+                <span>Dashboard</span>
+              </li>
+              <li
+                className="profile-dropdown-item profile-dropdown-item-admin"
+                onClick={() => handleNavigate('/admin/cards')}
+              >
+                <FiDatabase className="profile-dropdown-icon" />
+                <span>Cards Panel</span>
+              </li>
+              <li
+                className="profile-dropdown-item profile-dropdown-item-admin"
+                onClick={() => handleNavigate('/admin/sets')}
+              >
+                <FiLayers className="profile-dropdown-icon" />
+                <span>Sets Panel</span>
+              </li>
+              <li
+                className="profile-dropdown-item profile-dropdown-item-admin profile-dropdown-item-divider"
+                onClick={() => handleNavigate('/admin/series')}
+              >
+                <FiSettings className="profile-dropdown-icon" />
+                <span>Series Panel</span>
+              </li>
+            </>
+          )}
+          <li className="profile-dropdown-item" onClick={() => handleNavigate('/my-orders')}>
+            <FiPackage className="profile-dropdown-icon" />
+            <span>My orders</span>
+          </li>
+          <li className="profile-dropdown-item" onClick={() => handleNavigate('/profile')}>
+            <FiUser className="profile-dropdown-icon" />
+            <span>My profile</span>
+          </li>
+          <li className="profile-dropdown-item profile-dropdown-item-logout" onClick={handleLogoutClick}>
+            <FiLogOut className="profile-dropdown-icon" />
+            <span>Logout</span>
+          </li>
+        </ul>
+      )}
+    </div>
+  );
 }

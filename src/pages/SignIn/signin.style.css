@@ -3,7 +3,7 @@
   grid-template-columns: 1.4fr 1fr;
   width: 100%;
   max-height: 100vh;
- 
+
   overflow-y: hidden;
 
   background-image: url(/images/background_img_login.png);
@@ -14,17 +14,17 @@
 
 .login-right-col,
 .login-left-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    gap: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 40px;
 }
 .login-title {
-    font-family: var(--second-family);
-    font-weight: 700;
-    font-size: 56px;
-    text-align: center;
-    color: var(--main-500);
+  font-family: var(--second-family);
+  font-weight: 700;
+  font-size: 56px;
+  text-align: center;
+  color: var(--main-500);
 }

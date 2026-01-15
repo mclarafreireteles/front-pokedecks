@@ -1,9 +1,9 @@
 .cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
-    gap: 42px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 42px;
 }
 
 .page-content {
-    padding: 40px 80px;
+  padding: 40px 80px;
 }

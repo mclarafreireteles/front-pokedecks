@@ -5,12 +5,12 @@ const apiErrorMessages = {
   401: 'Authentication failed. Please log in again.',
   403: 'You do not have permission to do this.',
   404: 'The resource you requested was not found.',
-  500: 'An internal server error occurred. Please try again later.'
+  500: 'An internal server error occurred. Please try again later.',
 };
 
 const fallbackErrorMessages = {
   NETWORK: 'Could not connect to the server. Please check your connection.',
-  UNKNOWN: 'An unexpected error occurred. Please try again later.'
+  UNKNOWN: 'An unexpected error occurred. Please try again later.',
 };
 
 const handleApiResponse = async (response) => {
@@ -18,9 +18,9 @@ const handleApiResponse = async (response) => {
     const status = response.status;
 
     if (status === 401) {
+      // Remove invalid token but don't redirect automatically
+      // Let components handle authentication errors individually
       localStorage.removeItem('pokedecks_token');
-      // Força o re-login
-      window.location.href = '/'; 
     }
 
     const message = apiErrorMessages[status] || fallbackErrorMessages.UNKNOWN;
@@ -39,21 +39,20 @@ export const fetchAuthenticated = async (endpoint, options = {}) => {
   const token = localStorage.getItem('pokedecks_token');
 
   if (!token) {
-    window.location.href = '/';
-    throw new Error('User not authenticated. Redirecting to login.');
+    throw new Error('User not authenticated.');
   }
 
   const headers = {
     'Content-Type': 'application/json',
-    'accept': '*/*',
+    accept: '*/*',
     ...options.headers,
-    'Authorization': `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
   };
 
   try {
     const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
-      headers: headers
+      headers: headers,
     });
     return await handleApiResponse(response);
   } catch (error) {
