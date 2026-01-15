@@ -25,7 +25,7 @@ import { PageName } from "../../components/PageName/PageName";
 
 export function Cart() {
     const { cartItems, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
-    const { user, isAuthenticated } = useAuth();
+    const { isAuthenticated } = useAuth();
     const navigate = useNavigate();
 
     const [isCheckingOut, setIsCheckingOut] = useState(false);
