@@ -30,24 +30,35 @@ export function AdminDashboard() {
     }, []);
 
     const loadDashboardData = async () => {
-        setIsLoading(true);
-        try {
-            // Busca todos os dados em paralelo para melhor performance
-            const [ordersData, stock, rev, cust] = await Promise.all([
-                orderService.getAllOrders(),
-                reportService.getOutOfStockReport(),
-                reportService.getDailyRevenueReport(),
-                reportService.getCustomerPurchasesReport()
-            ]);
+    setIsLoading(true);
+    try {
+        // Usamos Promise.allSettled para que, se um falhar, os outros continuem
+        const results = await Promise.allSettled([
+            orderService.getAllOrders(),
+            reportService.getOutOfStockReport(),
+            reportService.getDailyRevenueReport(),
+            reportService.getCustomerPurchasesReport()
+        ]);
 
-            setOrders(ordersData);
-            setReports({ outOfStock: stock, revenue: rev, customers: cust });
-        } catch (error) {
-            console.error("Erro ao carregar dados do dashboard:", error);
-        } finally {
-            setIsLoading(false);
+        // Verificamos cada resultado
+        if (results[0].status === 'fulfilled') setOrders(results[0].value);
+        
+        setReports({
+            outOfStock: results[1].status === 'fulfilled' ? results[1].value : [],
+            revenue: results[2].status === 'fulfilled' ? results[2].value : { total: "0,00" },
+            customers: results[3].status === 'fulfilled' ? results[3].value : []
+        });
+
+        if (results[2].status === 'rejected') {
+            console.error("Erro específico na Receita Diária:", results[2].reason);
         }
-    };
+
+    } catch (error) {
+        console.error("Erro crítico no carregamento:", error);
+    } finally {
+        setIsLoading(false);
+    }
+};
 
     const handleDeleteOrder = async (id) => {
         if (window.confirm(`Deseja realmente excluir o pedido #${id}?`)) {
@@ -67,6 +78,7 @@ export function AdminDashboard() {
             </Box>
         );
     }
+   console.log("Customers report:", reports.customers);
 
     return (
         <main>
@@ -146,29 +158,50 @@ export function AdminDashboard() {
                                 <TableCell sx={{ fontWeight: 'bold', color: '#9E9E9E' }}>Cliente</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: '#9E9E9E' }}>Data</TableCell>
                                 <TableCell sx={{ fontWeight: 'bold', color: '#9E9E9E' }}>Total</TableCell>
-                                <TableCell align="center" sx={{ fontWeight: 'bold', color: '#9E9E9E' }}>Ações</TableCell>
+                                <TableCell align="center" sx={{ fontWeight: 'bold', color: '#9E9E9E' }}>Excluir </TableCell>
                             </TableRow>
                         </TableHead>
-                        <TableBody>
-                            {orders.length > 0 ? orders.map((order) => (
-                                <TableRow key={order.id} hover>
-                                    <TableCell>#{order.id}</TableCell>
-                                    <TableCell>{order.customerName || "Cliente"}</TableCell>
-                                    <TableCell>{new Date(order.createdAt).toLocaleDateString()}</TableCell>
-                                    <TableCell>R$ {order.totalAmount?.toFixed(2)}</TableCell>
-                                    <TableCell align="center">
-                                        <IconButton color="primary" title="Visualizar Detalhes"><FiEye /></IconButton>
-                                        <IconButton color="error" onClick={() => handleDeleteOrder(order.id)} title="Excluir Pedido"><FiTrash2 /></IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            )) : (
-                                <TableRow>
-                                    <TableCell colSpan={5} align="center" sx={{ py: 3 }}>
-                                        Nenhum pedido encontrado.
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
+                       <TableBody>
+  {orders.length > 0 ? orders.map((order) => (
+    <TableRow key={order.id} hover>
+      <TableCell>#{order.id}</TableCell>
+
+      {/* Nome do cliente */}
+      <TableCell>
+        {order.user?.name || "Cliente"}
+      </TableCell>
+
+      {/* Data do pedido */}
+      <TableCell>
+        {new Date(order.orderTime).toLocaleDateString("pt-BR")}
+      </TableCell>
+
+      {/* Total em Real */}
+      <TableCell>
+        {order.totalPrice.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL"
+        })}
+      </TableCell>
+
+      <TableCell align="center">
+        <IconButton
+          color="error"
+          onClick={() => handleDeleteOrder(order.id)}
+          title="Excluir Pedido"
+        >
+          <FiTrash2 />
+        </IconButton>
+      </TableCell>
+    </TableRow>
+  )) : (
+    <TableRow>
+      <TableCell colSpan={5} align="center" sx={{ py: 3 }}>
+        Nenhum pedido encontrado.
+      </TableCell>
+    </TableRow>
+  )}
+</TableBody>
                     </Table>
                 </TableContainer>
 
