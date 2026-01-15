@@ -37,11 +37,12 @@ function App() {
       <Route path="/my-orders" element={<MyOrders />} />
 
       <Route path="/set/:id" element={<SetPage />} />
-      <Route path="/dashboard" element={<AdminDashboard />} />
+      
       
       
 
       <Route element={<AdminRoute />}>
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
         <Route path='/admin/cards' element={<Cards />} />
         <Route path='/admin/sets' element={<Sets />} />
         <Route path='/admin/orders' element={<Orders />} />
