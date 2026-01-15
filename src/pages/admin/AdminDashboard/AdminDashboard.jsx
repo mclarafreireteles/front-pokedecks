@@ -53,7 +53,6 @@ export function AdminDashboard() {
     const handleOpenDetails = async (orderId) => {
         try {
             const details = await orderService.getOrderById(orderId); 
-            console.log("Detalhes carregados no modal:", details); // Log para conferência
             setSelectedOrder(details);
             setIsDetailsOpen(true);
         } catch (error) {
@@ -91,7 +90,6 @@ export function AdminDashboard() {
             <Container maxWidth="lg" sx={{ py: 4, minHeight: '80vh' }}>
                 <Typography variant="h4" fontWeight="bold" mb={4}>Dashboard Administrativo</Typography>
                 
-                {/* --- SEÇÃO DE RELATÓRIOS --- */}
                 <Grid container spacing={3} mb={6}>
                     <Grid item xs={12} md={4}>
                         <Paper sx={{ p: 3, borderRadius: 3, border: '1px solid #E0E0E0', height: '100%' }} elevation={0}>
@@ -122,33 +120,10 @@ export function AdminDashboard() {
                             </Box>
                         </Paper>
                     </Grid>
-
-                    <Grid item xs={12}>
-                        <Paper sx={{ p: 3, borderRadius: 3, border: '1px solid #E0E0E0' }} elevation={0}>
-                            <Box display="flex" alignItems="center" mb={2}>
-                                <FiUsers size={24} color="#2563EB" />
-                                <Typography variant="h6" ml={1}>Compras por Cliente</Typography>
-                            </Box>
-                            <Divider sx={{ mb: 2 }} />
-                            <Grid container spacing={2}>
-                                {reports.customers.map(c => (
-                                    <Grid item xs={12} sm={6} md={4} key={c.id}>
-                                        <Box p={1} sx={{ bgcolor: '#F9F9F9', borderRadius: 2 }}>
-                                            <Typography fontWeight="bold" variant="body2">{c.name}</Typography>
-                                            <Typography variant="caption" color="textSecondary">
-                                                {c.orderCount} pedidos • Total: R$ {c.totalSpent}
-                                            </Typography>
-                                        </Box>
-                                    </Grid>
-                                ))}
-                            </Grid>
-                        </Paper>
-                    </Grid>
                 </Grid>
 
                 <Divider sx={{ mb: 6 }} />
 
-                {/* --- SEÇÃO DE PEDIDOS --- */}
                 <Typography variant="h5" fontWeight="bold" mb={3}>Gerenciar Pedidos de Clientes</Typography>
                 
                 <TableContainer component={Paper} sx={{ borderRadius: 3, border: '1px solid #E0E0E0' }} elevation={0}>
@@ -187,7 +162,7 @@ export function AdminDashboard() {
                     </Table>
                 </TableContainer>
 
-                {/* --- MODAL DE DETALHES CORRIGIDO --- */}
+                {/* --- MODAL DE DETALHES --- */}
                 <Dialog open={isDetailsOpen} onClose={handleCloseDetails} maxWidth="sm" fullWidth>
                     <DialogTitle sx={{ fontWeight: 'bold' }}>
                         Detalhes do Pedido #{selectedOrder?.id.substring(0, 8)}...
@@ -202,22 +177,21 @@ export function AdminDashboard() {
                                 
                                 <Typography variant="h6" sx={{ mt: 3, mb: 1 }}>Itens da Compra:</Typography>
                                 <List sx={{ bgcolor: '#f9f9f9', borderRadius: 2 }}>
-                                    {/* MUDANÇA AQUI: de .items para .orderItems conforme seu console.log */}
                                     {selectedOrder.orderItems?.map((item, index) => (
                                         <ListItem key={index} divider={index !== selectedOrder.orderItems.length - 1}>
                                             <Avatar 
-                                                src={item.imageUrl} 
+                                                /* CORREÇÃO DA IMAGEM: Adicionado /high.webp */
+                                                src={item.imageUrl ? `${item.imageUrl}/high.webp` : ""} 
                                                 variant="rounded" 
-                                                sx={{ width: 40, height: 40, mr: 2 }} 
+                                                sx={{ width: 60, height: 80, mr: 2, bgcolor: '#eee' }} 
                                             />
                                             <ListItemText 
-                                                // MUDANÇA AQUI: item.name direto conforme seu console.log
                                                 primary={item.name || "Carta Desconhecida"} 
                                                 secondary={`Quantidade: ${item.quantity} | ID: ${item.cardId}`} 
                                             />
                                             <Typography variant="body2" fontWeight="bold">
-                                                {/* Preço total do item se disponível, ou lógica de cálculo */}
-                                                {item.totalPrice ? item.totalPrice.toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) : ""}
+                                                {/* Se não houver preço unitário no item, multiplicamos o total se necessário */}
+                                                {selectedOrder.totalPrice ? (selectedOrder.totalPrice / selectedOrder.totalItems * item.quantity).toLocaleString("pt-BR", { style: "currency", currency: "BRL" }) : ""}
                                             </Typography>
                                         </ListItem>
                                     ))}
