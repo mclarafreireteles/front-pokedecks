@@ -35,3 +35,9 @@ export const updateSet = async (id, setData) => {
         body: JSON.stringify(setData)
     });
 };
+
+export const getSetDetails = async (setId) => {
+    return fetchAuthenticated(`${API_ENDPOINT}/${setId}/cards`, {
+        method: 'GET'
+    })
+}
